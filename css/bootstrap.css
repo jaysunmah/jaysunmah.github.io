@@ -30,16 +30,26 @@ body {
   width: 100%;
 
 }
-.img-background {
-  display: block;
+.jasonDotMa {
+  /*margin-top: auto;
+  margin-bottom: auto;*/
+  /* display: table-cell;*/
+  margin-top: 20%;
+  vertical-align: middle;
+  
+  font-size: 4em;
+  color: white;
+  font-family: georgia;
 }
 .background {
-  height: 100vh;
+  height: 100%;
   width: 30%;
   /*background-color: black;*/
   display: inline-block;
 }
 .background img {
+  /*display: inline-block;
+  vertical-align: middle;*/
   margin-top: 20%;
   height: auto;
   width: 100%;
@@ -52,7 +62,7 @@ body {
 
 }
 .bgroundmiddle {
-  
+  /*display: table;*/
 }
 
 .body_background {
@@ -1185,7 +1195,8 @@ img {
 .carousel-inner > .item > a > img {
   display: block;
   /*width: 98%;*/
-  height: 100%;
+  width: 100%;
+  height: auto;
   position: absolute;
     margin: auto;
     top: 0;
