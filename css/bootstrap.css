@@ -30,6 +30,30 @@ body {
   width: 100%;
 
 }
+.img-background {
+  display: block;
+}
+.background {
+  height: 100vh;
+  width: 30%;
+  /*background-color: black;*/
+  display: inline-block;
+}
+.background img {
+  margin-top: 20%;
+  height: auto;
+  width: 100%;
+}
+.bgroundright {
+  float: right;
+}
+.bgroundleft {
+  float: left;
+
+}
+.bgroundmiddle {
+  
+}
 
 .body_background {
   margin: 10%;
@@ -1160,7 +1184,8 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  width: 98%;
+  /*width: 98%;*/
+  height: 100%;
   position: absolute;
     margin: auto;
     top: 0;
