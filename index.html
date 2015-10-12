@@ -1,448 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	<title>Jason.Ma</title>
+    <title>Jason.Ma</title>
 
-	<!-- CSS -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link href="assets/css/simple-line-icons.css" rel="stylesheet" media="screen">
-	<link href="assets/css/animate.css" rel="stylesheet">
-	
-	<!-- Custom styles CSS -->
-	<link href="assets/css/style.css" rel="stylesheet" media="screen">
-	
-	<script src="assets/js/modernizr.custom.js"></script>
-	   
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="css/animate.css" rel="stylesheet" />
+    <!-- Squad theme CSS -->
+    <link href="css/style.css" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet">
+
 </head>
-<body>
 
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
-
 	<div id="preloader">
-		<div id="status"></div>
+	  <div id="load"></div>
 	</div>
 
-	<!-- Home start -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <h1>Jason.Ma</h1>
+                </a>
+            </div>
 
-	<section id="home" class="pfblock-image screen-height">
-		<div class="home-overlay"></div>
-		<div class="intro">
-			<div class="start">Hello, my name is Jason Ma and I am</div>
-			<h1>Artist - Programmer</h1>
-			<div class="start">programming pixels by day, drawing code by night</div>
-		</div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#intro">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+		<li><a href="#skills">Skills</a></li>
+		<li><a href="#program">Programs</a></li>
+		<li><a href="#portfolio">Art Portfolio</a></li>
+		<li><a href="#contact">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Example menu</a></li>
+            <li><a href="#">Example menu</a></li>
+            <li><a href="#">Example menu</a></li>
+          </ul>
+        </li>
+      </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-		<a href="#services">
-		<div class="scroll-down">
-			<span>
-				<i class="fa fa-angle-down fa-2x"></i>
-			</span>
-		</div>
-		</a>
-
-	</section>
-
-	<!-- Home end -->
-
-	<!-- Navigation start -->
-
-	<header class="header">
-
-		<nav class="navbar navbar-custom" role="navigation">
-
-			<div class="container">
-
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.html">Jason.Ma</a>
-				</div>
-
-				<div class="collapse navbar-collapse" id="custom-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#home">Home</a></li>
-						<li><a href="#services">About Me</a></li>
-						<li><a href="#portfolio">Portfolio</a></li>
-						<li><a href="#skills">Skills</a></li>
-						<!-- <li><a href="#testimonials">Testimonials</a></li> -->
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-				</div>
-
-			</div><!-- .container -->
-
-		</nav>
-
-	</header>
-
-	<!-- Navigation end -->
-
-	<!-- Services start -->
-
-	<section id="services" class="pfblock pfblock-gray">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-sm-6 col-sm-offset-3">
-
-					<div class="pfblock-header wow fadeInUp">
-						<h2 class="pfblock-title">About Me</h2>
-						<div class="pfblock-line"></div>
-						<div class="pfblock-subtitle">
-							Raised on the East Coast, slowly migrating to the West.
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="row">
-
-				<div class="col-sm-3">
-					<div class="iconbox wow slideInLeft">
-						<div class="iconbox-icon">
-							<!-- <span class="icon-magic-wand"></span> -->
-							<img class = "icons" src="assets/images/high_school_logo.png"> 
-						</div>
-						<div class="iconbox-text">
-							<h3 class="iconbox-title">High School</h3>
-							<div class="iconbox-desc">
-								West-Windsor Plainsboro High School North Class of '15
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="col-sm-3">
-					<div class="iconbox wow slideInLeft">
-						<div class="iconbox-icon">
-							<!-- <span class="icon-puzzle"></span> -->
-							<img class = "icons" src = "assets/images/college_logo.png">
-						</div>
-						<div class="iconbox-text">
-							<h3 class="iconbox-title">Undergraduate</h3>
-							<div class="iconbox-desc">
-								Carnegie Mellon Univeresity. Studying Bachelor of Computer Science and Arts
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-3">
-
-					<div class="iconbox wow slideInRight">
-						<div class="iconbox-icon">
-							<span class="icon-badge"></span>
-						</div>
-						<div class="iconbox-text">
-							<h3 class="iconbox-title">Branding</h3>
-							<div class="iconbox-desc">
-								Good things come to those who wait, but only the things left by those who hustle
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="col-sm-3">
-
-					<div class="iconbox wow slideInRight">
-						<div class="iconbox-icon">
-							<span class="icon-question"></span>
-						</div>
-						<div class="iconbox-text">
-							<h3 class="iconbox-title">Consultation</h3>
-							<div class="iconbox-desc">
-								Good things come to those who wait, but only the things left by those who hustle
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-			</div><!-- .row -->
-		</div><!-- .container -->
-	</section>
-
-	<!-- Services end -->
-
+	<!-- Section: intro -->
+    <section id="intro" class="intro">
 	
+		<div class="slogan">
+			<h2>WELCOME TO <span class="text_color">SQUAD</span> </h2>
+			<h4>WE ARE GROUP OF GENTLEMEN MAKING AWESOME WEB WITH BOOTSTRAP</h4>
+		</div>
+		<div class="page-scroll">
+			<a href="#about" class="btn btn-circle">
+				<i class="fa fa-angle-double-down animated"></i>
+			</a>
+		</div>
+    </section>
+	<!-- /Section: intro -->
 
+	<!-- Section: about -->
+    <section id="about" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>About Me</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
 
-	<!-- CallToAction start -->
-
-	<section class="calltoaction">
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
 		<div class="container">
 
-			<div class="row">
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.2s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>High School</h5>
+                        <p class="subtitle">WW-P HSN Class of '15</p>
+                        <div class="avatar"><img src="img/team/1.jpg" alt="" class="img-responsive img-circle" /></div>
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.5s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Undergraduate</h5>
+                        <p class="subtitle">Carnegie Mellon Bachelor of Computer Science and Arts '19</p>
+                        <div class="avatar"><img src="assets/images/cmu_logo.png" alt="" class="img-responsive img-circle" /></div>
 
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.8s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Jack Briane</h5>
+                        <p class="subtitle">jQuery Ninja</p>
+                        <div class="avatar"><img src="img/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="1s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Tom Petterson</h5>
+                        <p class="subtitle">Typographer</p>
+                        <div class="avatar"><img src="img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                    </div>
+                </div>
+				</div>
+            </div>
+        </div>		
+		</div>
+	</section>
+	<!-- /Section: about -->
+	
+	<!-- Section: skills -->
+    <section id="skills" class="home-section text-center bg-gray">
+		
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div>
+					<div class="section-heading">
+					<h2>Our Services</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+        <div class="row">
+
+            <div class="col-sm-3 col-md-3">
+				<div class="wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-1.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Print</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-2.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Web Design</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-3.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Photography</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInRight" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-4.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Cloud System</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+
+        </div>		
+		</div>
+	</section>
+	<!-- /Section: skills -->
+
+	<!-- Section: programs -->
+    <section id="program" class="home-section text-center">
+		
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div>
+					<div class="section-heading">
+					<h2>Programs</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+        <div class="row">
+
+        	<a href = "program_info/p5_projects_info.html"/>
+            <div class="col-sm-3 col-md-3">
+				<div class="wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img class = "img-responsive" src="assets/images/p5face_preview.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>p5.js</h5>
+						<p>Messing around with user interaction and web based animations. Implementing the p5.js libraries</p>
+					</div>
+                </div>
+				</div>
+            </div>
+        	</a>
+
+
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img class = "img-responsive" src="assets/images/phototalk_preview.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Photo Talk</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img class = "img-responsive" src="assets/images/tiger_mom_preview.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Tiger Mom</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInRight" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img class = "img-responsive" src="assets/images/tiff_mom_preview.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Tiff Mom</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+
+            <a href = "testing"/>
+            <div class="col-sm-3 col-md-3">
+				<div class="wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-1.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Print</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+        	</a>
+
+        	<a href = "testing"/>
+            <div class="col-sm-3 col-md-3">
+				<div class="wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-1.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Print</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+        	</a>
+
+        </div>		
+		</div>
+	</section>
+	<!-- /Section: programs -->
+	
+	<!-- Section: portfolio -->
+    <section id="portfolio" class="home-section text-center bg-gray">
+		
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div>
+					<div class="section-heading">
+					<h2>Art Portfolio</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+				<div class="wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-1.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Print</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-2.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Web Design</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-3.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Photography</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-sm-3 col-md-3">
+				<div class="wow fadeInRight" data-wow-delay="0.2s">
+                <div class="service-box">
+					<div class="service-icon">
+						<img src="img/icons/service-icon-4.png" alt="" />
+					</div>
+					<div class="service-desc">
+						<h5>Cloud System</h5>
+						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+					</div>
+                </div>
+				</div>
+            </div>
+        </div>		
+		</div>
+	</section>
+	<!-- /Section: services -->
+
+	<!-- Section: contact -->
+    <section id="contact" class="home-section text-center">
+		<div class="heading-contact">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Get in touch</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="boxed-grey">
+                <form id="contact-form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">
+                                Subject</label>
+                            <select id="subject" name="subject" class="form-control" required="required">
+                                <option value="na" selected="">Choose One:</option>
+                                <option value="service">General Customer Service</option>
+                                <option value="suggestions">Suggestions</option>
+                                <option value="product">Product Support</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Message</label>
+                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
+                            Send Message</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+		
+		<div class="col-lg-4">
+			<div class="widget-contact">
+				<h5>Main Office</h5>
+				
+				<address>
+				  <strong>Squas Design, Inc.</strong><br>
+				  Tower 795 Folsom Ave, Beautiful Suite 600<br>
+				  San Francisco, CA 94107<br>
+				  <abbr title="Phone">P:</abbr> (123) 456-7890
+				</address>
+
+				<address>
+				  <strong>Email</strong><br>
+				  <a href="mailto:#">email.name@example.com</a>
+				</address>	
+				<address>
+				  <strong>We're on social networks</strong><br>
+                       	<ul class="company-social">
+                            <li class="social-facebook"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li class="social-twitter"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li class="social-dribble"><a href="#" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                            <li class="social-google"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>	
+				</address>					
+			
+			</div>	
+		</div>
+    </div>	
+
+		</div>
+	</section>
+	<!-- /Section: contact -->
+
+	<footer>
+		<div class="container">
+			<div class="row">
 				<div class="col-md-12 col-lg-12">
-					<h2 class="wow slideInRight" data-wow-delay=".1s">Like what you see??</h2>
-					<div class="calltoaction-decription wow slideInRight" data-wow-delay=".2s">
-						I'm desperate for internships. 
+					<div class="wow shake" data-wow-delay="0.4s">
+					<div class="page-scroll marginbot-30">
+						<a href="#intro" id="totop" class="btn btn-circle">
+							<i class="fa fa-angle-double-up animated"></i>
+						</a>
 					</div>
-				</div>
-
-				<div class="col-md-12 col-lg-12 calltoaction-btn wow slideInRight" data-wow-delay=".3s">
-					<a href="#contact" class="btn btn-lg">Please Hire Me</a>
-				</div>
-
-			</div><!-- .row -->
-		</div><!-- .container -->
-	</section>
-
-	<!-- CallToAction end -->
-
-	<!-- Skills start -->
-	
-	<section class="pfblock pfblock-gray" id="skills">
-		
-			<div class="container">
-			
-				<div class="row skills">
-					
-					<div class="row">
-
-						<div class="col-sm-6 col-sm-offset-3">
-
-							<div class="pfblock-header wow fadeInUp">
-								<h2 class="pfblock-title">My Skills</h2>
-								<div class="pfblock-line"></div>
-								<div class="pfblock-subtitle">
-									Programming
-								</div>
-							</div>
-
-						</div>
-
-					</div><!-- .row -->
-					
-					<div class="col-sm-6 col-md-3 text-center">
-						<span data-percent="100" class="chart easyPieChart" style="width: 140px; height: 140px; line-height: 140px;">
-							<span class="percent">100</span>
-						</span>
-						<h3 class="text-center">Python</h3>
 					</div>
-					<div class="col-sm-6 col-md-3 text-center">
-						<span data-percent="90" class="chart easyPieChart" style="width: 140px; height: 140px; line-height: 140px;">
-							<span class="percent">90</span>
-						</span>
-						<h3 class="text-center">Java</h3>
-					</div>
-					<div class="col-sm-6 col-md-3 text-center">
-						<span data-percent="80" class="chart easyPieChart" style="width: 140px; height: 140px; line-height: 140px;">
-							<span class="percent">80</span>
-						</span>
-						<h3 class="text-center">HTML</h3>
-					</div>
-					<div class="col-sm-6 col-md-3 text-center">
-						<span data-percent="69" class="chart easyPieChart" style="width: 140px; height: 140px; line-height: 140px;">
-							<span class="percent">69</span>
-						</span>
-						<h3 class="text-center">CSS</h3>
-					</div>
-					
-					
-				</div><!--End row -->
-				<div class="pfblock-header wow fadeInUp">
-					<div class="pfblock-line"></div>
-						<div class="pfblock-subtitle">
-							Art Design
-						</div>
-				</div>	
-				<div class="col-sm-6 col-md-3 text-center">
-						<span data-percent="40" class="chart easyPieChart" style="width: 140px; height: 140px; line-height: 140px;">
-							<span class="percent">40</span>
-						</span>
-						<h3 class="text-center">Photoshop</h3>
+					<p>&copy;Copyright 2014 - Squad. All rights reserved. Designed by <a href="http://bootstraptaste.com">Bootstrap Themes</a></p>
+                    <!-- 
+                        All links in the footer should remain intact. 
+                        Licenseing information is available at: http://bootstraptaste.com/license/
+                        You can buy this theme without footer links online at: http://bootstraptaste.com/buy/?theme=Squadfree
+                    -->
 				</div>
-				<div class="col-sm-6 col-md-3 text-center">
-						<span data-percent="1" class="chart easyPieChart" style="width: 140px; height: 140px; line-height: 140px;">
-							<span class="percent">1</span>
-						</span>
-						<h3 class="text-center">Differentiating Red and Green</h3>
-				</div>		
-			</div>
-		
-	</section>
-	
-	<!-- Skills end -->
-
-	
-
-	<!-- Testimonials start -->
-
-	<!-- <section id="testimonials" class="pfblock pfblock-gray">
-
-		<div class="container">
-			
-			<div class="row">
-
-				<div class="col-sm-6 col-sm-offset-3">
-
-					<div class="pfblock-header wow fadeInUp">
-						<h2 class="pfblock-title">What my clients say</h2>
-						<div class="pfblock-line"></div>
-						<div class="pfblock-subtitle">
-							No one lights a lamp in order to hide it behind the door: the purpose of light is to create more light, to open people’s eyes, to reveal the marvels around.
-						</div>
-					</div>
-
-				</div>
-
-			</div><!-- .row -->
-
-			<!-- <div class="row">
-
-			<div id="cbp-qtrotator" class="cbp-qtrotator">
-				<div class="cbp-qtcontent">
-					<img src="assets/images/client-1.jpg" alt="client-1" />
-					<blockquote>
-					  <p>Work with John was a pleasure. He understood exactly what I wanted and created an awesome site for my company.</p>
-					  <footer>Pino Caruso</footer>
-					</blockquote>
-				</div>
-				<div class="cbp-qtcontent">
-					<img src="assets/images/client-2.jpg" alt="client-2" />
-					<blockquote>
-					  <p>I'm really happy with the results. Get 100% satisfaction is difficult but Alex got it without problems.</p>
-					  <footer>Jane Doe</footer>
-					</blockquote>
-				</div>
-
-			</div>		
-
-			</div><!-- .row -->
-
-					
-		<!-- </div><!-- .row -->
-	<!-- </section> -->
-
-	<!-- Testimonial end -->
-
-
-	<!-- Contact start -->
-
-	<section id="contact" class="pfblock">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-sm-6 col-sm-offset-3">
-
-					<div class="pfblock-header">
-						<h2 class="pfblock-title">Contact me!</h2>
-						<div class="pfblock-line"></div>
-						<div class="pfblock-subtitle">
-							<p> Scheduling Email: kyin@andrew.cmu.edu </p>
-							<p> Secretary Phone Number: 949-205-9539 </p>
-							<p> Personal Email: jasonm2@andrew.cmu.edu </p>
-							<p> Phone: 732-693-6694x6969 </p>
-						</div>
-					</div>
-
-				</div>
-
-
-			</div><!-- .row -->
-
-			<!-- <div class="row">
-
-				<div class="col-sm-6 col-sm-offset-3">
-
-					<form id="contact-form" role="form">
-						<div class="ajax-hidden">
-							<div class="form-group wow fadeInUp">
-								<label class="sr-only" for="c_name">Name</label>
-								<input type="text" id="c_name" class="form-control" name="c_name" placeholder="Name">
-							</div>
-
-							<div class="form-group wow fadeInUp" data-wow-delay=".1s">
-								<label class="sr-only" for="c_email">Email</label>
-								<input type="email" id="c_email" class="form-control" name="c_email" placeholder="E-mail">
-							</div>
-
-							<div class="form-group wow fadeInUp" data-wow-delay=".2s">
-								<textarea class="form-control" id="c_message" name="c_message" rows="7" placeholder="Message"></textarea>
-							</div>
-
-							<button type="submit" class="btn btn-lg btn-block wow fadeInUp" data-wow-delay=".3s">Send Message</button>
-						</div>
-						<div class="ajax-response"></div>
-					</form>
-
-				</div>
-
-			</div><!-- .row --> 
-		</div><!-- .container -->
-	</section>
-
-	<!-- Contact end -->
-
-	<!-- Footer start -->
-
-	<footer id="footer">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-sm-12">
-
-					<ul class="social-links">
-						<li><a href="index.html#" class="wow fadeInUp"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="index.html#" class="wow fadeInUp" data-wow-delay=".1s"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="index.html#" class="wow fadeInUp" data-wow-delay=".2s"><i class="fa fa-google-plus"></i></a></li>
-						<li><a href="index.html#" class="wow fadeInUp" data-wow-delay=".4s"><i class="fa fa-pinterest"></i></a></li>
-						<li><a href="index.html#" class="wow fadeInUp" data-wow-delay=".5s"><i class="fa fa-envelope"></i></a></li>
-					</ul>
-
-					<p class="heart">
-						Made with <span class="fa fa-heart fa-2x animated pulse"></span> in Nottingham
-					</p>
-					<p class="copyright">
-						<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
-						© 2015 Jason Ma
-					</p>
-
-				</div>
-
-			</div><!-- .row -->
-		</div><!-- .container -->
+			</div>	
+		</div>
 	</footer>
 
-	<!-- Footer end -->
-
-	<!-- Scroll to top -->
-
-	<div class="scroll-up">
-		<a href="#home"><i class="fa fa-angle-up"></i></a>
-	</div>
-	
-	<!-- Scroll to top end-->
-
-	<!-- Javascript files -->
-
-	<script src="assets/js/jquery-1.11.1.min.js"></script>
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery.parallax-1.1.3.js"></script>
-	<script src="assets/js/imagesloaded.pkgd.js"></script>
-	<script src="assets/js/jquery.sticky.js"></script>
-	<script src="assets/js/smoothscroll.js"></script>
-	<script src="assets/js/wow.min.js"></script>
-	<script src="assets/js/jquery.easypiechart.js"></script>
-	<script src="assets/js/waypoints.min.js"></script>
-	<script src="assets/js/jquery.cbpQTRotator.js"></script>
-	<script src="assets/js/custom.js"></script>
+    <!-- Core JavaScript Files -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>	
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="js/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.js"></script>
 
 </body>
+
 </html>
