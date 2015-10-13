@@ -64,7 +64,11 @@ a:focus {
 .service-box {
   min-height: 400px;
 }
-
+.img-icon {
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+}
 
 .navbar-brand {
     font-weight: 700;
