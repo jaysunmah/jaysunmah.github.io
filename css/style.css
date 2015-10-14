@@ -62,7 +62,10 @@ a:focus {
 	
 }
 .service-box {
-  min-height: 400px;
+  margin-top: 20px;
+  /*min-height: 400px;*/
+  /*background-color: white;*/
+  padding: 10px;
 }
 .img-icon {
   margin-top: 10px;
