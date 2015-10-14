@@ -70,6 +70,14 @@ a:focus {
   height: auto;
 }
 
+.wheel {
+margin: 0 auto;
+}
+
+.bar-responsive {
+  display: block;
+}
+
 .navbar-brand {
     font-weight: 700;
 }
