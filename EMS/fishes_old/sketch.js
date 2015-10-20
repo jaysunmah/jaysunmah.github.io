@@ -29,13 +29,9 @@ function draw()
   y1 = random(windowHeight / 4)
 
   if (time % 20 === 0) {
-    lines.push({
-      key: (x1, y1)
-      value: new Fish(x1, y1)
-      )}
-    
+    lines.push(new Fish(x1, y1))
   }
-  for ( var i in lines) {
+  for (var i=0; i<lines.length; i++) {
     if (time % 20 === 0) {
       // print('working')
       lines[i].updatePositionShifts(angle);
