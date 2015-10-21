@@ -16,7 +16,8 @@ var positionShifts = 0;
 function setup() 
 {
   background(0);
-  createCanvas(windowWidth, windowHeight); 
+  var myCanvas = createCanvas(windowWidth, windowHeight); 
+  myCanvas.parent('p5Canvas');
     var url = 'http://api.openweathermap.org/data/2.5/weather?q=New%20York,NY&units=imperial&APPID=7bbbb47522848e8b9c26ba35c226c734';
   loadJSON(url, gotWeather);
   // Circle starts in the middle
@@ -31,7 +32,7 @@ function draw()
 
   // print(wind.heading())
  background(106,202,243);
- 
+
   x1 = random(windowWidth);
   y1 = random(windowHeight / 4);
 
@@ -60,6 +61,13 @@ function draw()
   pop();
   time += 1;
   xoff += 0.1;
+  
+ 
+ textSize(60);
+ textAlign(CENTER);
+ textFont('Georgia')
+ text("Welcome to Jason.Ma", windowWidth / 2, windowHeight / 2);
+ 
   
 }
 
