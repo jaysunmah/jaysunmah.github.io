@@ -69,20 +69,23 @@ function draw()
  textSize(60);
  textAlign(CENTER);
  textFont('Georgia')
- var message = 'Welcome to Jason.Ma';
+ var message = 'Welcome to Jason.Ma.';
  var messageSize = textWidth(message);
 
- text(message, 0,windowHeight / 2, windowWidth, windowHeight);
+ text(message, 0,windowHeight / 2 - 60, windowWidth, windowHeight + 60);
  
 textSize(40);
 
  if (mouseX < windowWidth / 2) {
-   text("Programmer", 0, windowHeight / 2 + 60, windowWidth, windowHeight);
+   text("Programmer", 0, windowHeight / 2 +5, windowWidth, windowHeight);
  }
  else {
-   text("Artist", 0, windowHeight / 2 + 60, windowWidth, windowHeight);
-
+   text("Artist", 0, windowHeight / 2 + 5, windowWidth, windowHeight);
  }
+ // else {
+ //   text("Programmer. Artist.", 0, windowHeight / 2 + 65, windowWidth, windowHeight);
+
+ // }
 
 }
 
