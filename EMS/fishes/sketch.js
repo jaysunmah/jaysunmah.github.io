@@ -66,9 +66,9 @@ function draw()
  textSize(60);
  textAlign(CENTER);
  textFont('Georgia')
- text("Welcome to Jason.Ma", windowWidth / 2, windowHeight / 2);
+ text("Welcome to Jason.Ma", 0,windowHeight / 2, windowWidth, windowHeight);
  
-  
+
 }
 
 
