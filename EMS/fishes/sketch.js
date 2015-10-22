@@ -18,7 +18,10 @@ function setup()
   background(0);
   var myCanvas = createCanvas(windowWidth, windowHeight); 
   myCanvas.parent('p5Canvas');
-    var url = 'http://api.openweathermap.org/data/2.5/weather?q=New%20York,NY&units=imperial&APPID=7bbbb47522848e8b9c26ba35c226c734';
+  // var url = 'http://api.openweathermap.org/data/2.5/weather?q=New%20York,NY&units=imperial&APPID=7bbbb47522848e8b9c26ba35c226c734';
+  var url = 'http://api.openweathermap.org/data/2.5/weather?id=5206379&appid=bd82977b86bf27fb59a04b61b657fb6f';
+  
+  
   loadJSON(url, gotWeather);
   // Circle starts in the middle
   position = createVector(width/2, height/2);
