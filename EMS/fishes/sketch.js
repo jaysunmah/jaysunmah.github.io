@@ -69,8 +69,20 @@ function draw()
  textSize(60);
  textAlign(CENTER);
  textFont('Georgia')
- text("Welcome to Jason.Ma", 0,windowHeight / 2, windowWidth, windowHeight);
+ var message = 'Welcome to Jason.Ma';
+ var messageSize = textWidth(message);
+
+ text(message, 0,windowHeight / 2, windowWidth, windowHeight);
  
+textSize(40);
+
+ if (mouseX < windowWidth / 2) {
+   text("Programmer", 0, windowHeight / 2 + 60, windowWidth, windowHeight);
+ }
+ else {
+   text("Artist", 0, windowHeight / 2 + 60, windowWidth, windowHeight);
+
+ }
 
 }
 
@@ -171,7 +183,11 @@ function Fish(x, y) {
   this.updatePositionShifts = function() {
     // this.positionShifts = this.headx + (mouseX / windowWidth) * random(-2000,2000);
     var change = noise(this.offx, this.heady/100) * 100 - 50;
-    change *= (mouseX / windowWidth);
+
+    // change *= (mouseX / windowWidth);
+    if (mouseX < windowWidth /2 ) {
+      change = 0;
+    }
     this.offx += 0.01;
     // if(frameCount%60==0)
     //   print(change);
