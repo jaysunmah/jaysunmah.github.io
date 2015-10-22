@@ -65,6 +65,23 @@ function draw()
   time += 1;
   xoff += 0.1;
   
+ 
+ textSize(60);
+ textAlign(CENTER);
+ textFont('Georgia')
+ var message = 'Welcome to Jason.Ma.';
+ var messageSize = textWidth(message);
+
+ text(message, 0,windowHeight / 2 - 60, windowWidth, windowHeight + 60);
+ 
+textSize(40);
+
+ if (mouseX < windowWidth / 2) {
+   text("Programmer", 0, windowHeight / 2 +5, windowWidth, windowHeight);
+ }
+ else {
+   text("Artist", 0, windowHeight / 2 + 5, windowWidth, windowHeight);
+ }
 
 }
 
@@ -166,13 +183,12 @@ function Fish(x, y) {
     // this.positionShifts = this.headx + (mouseX / windowWidth) * random(-2000,2000);
     var change = noise(this.offx, this.heady/100) * 100 - 50;
 
-    change *= (mouseX / windowWidth);
-    // if (mouseX < windowWidth /2 ) {
-    //   change = 0;
-    // }
+    // change *= (mouseX / windowWidth);
+    if (mouseX < windowWidth /2 ) {
+      change = 0;
+    }
     this.offx += 0.01;
-    // if(frameCount%60==0)
-    //   print(change);
+
     this.positionShifts = this.frontHeadx + change;
   };
 }
