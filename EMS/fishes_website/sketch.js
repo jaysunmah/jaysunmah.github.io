@@ -36,15 +36,16 @@ function draw()
   // print(wind.heading())
  background(106,202,243);
 
+  // push();  
+  // translate(windowWidth, windowHeight / 2);
+  // rotate(wind.heading() + 3 * PI / 2);
+
   x1 = random(windowWidth);
   y1 = random(windowHeight / 4);
 
   if (time % 40 === 0) {
     lines.push(new Fish(x1, y1));
   }
-  push();  
-  translate(windowWidth, windowHeight / 2);
-  rotate(wind.heading() + 3 * PI / 2);
   for (var i=0; i<lines.length; i++) {
     // if (time % 20 === 0) {
     //   lines[i].updatePositionShifts(xoff);
@@ -61,26 +62,26 @@ function draw()
       lines.splice(i, 1);
     }
   }
-  pop();
+  // pop();
   time += 1;
   xoff += 0.1;
   
  
  textSize(60);
- textAlign(CENTER);
+ textAlign(CENTER, BOTTOM);
  textFont('Georgia')
  var message = 'Welcome to Jason.Ma.';
  var messageSize = textWidth(message);
 
- text(message, 0,windowHeight / 2 - 60, windowWidth, windowHeight + 60);
+ text(message, 0,0, windowWidth, windowHeight - 60);
  
 textSize(40);
 
  if (mouseX < windowWidth / 2) {
-   text("Programmer", 0, windowHeight / 2 +5, windowWidth, windowHeight);
+   text("Programmer", 0, windowHeight / 2 -55, windowWidth, windowHeight);
  }
  else {
-   text("Artist", 0, windowHeight / 2 + 5, windowWidth, windowHeight);
+   text("Artist", 0, windowHeight / 2 -55, windowWidth, windowHeight);
  }
  // else {
  //   text("Programmer. Artist.", 0, windowHeight / 2 + 65, windowWidth, windowHeight);
@@ -189,11 +190,11 @@ function Fish(x, y) {
 
     // change *= (mouseX / windowWidth);
     if (mouseX < windowWidth /2 ) {
-      change = 0;
+      change = 100 * cos(wind.heading() + 3 * PI / 2);
     }
     this.offx += 0.01;
-    // if(frameCount%60==0)
-    //   print(change);
+    if(frameCount%60==0)
+      console.log(change);
     this.positionShifts = this.frontHeadx + change;
   };
 }
