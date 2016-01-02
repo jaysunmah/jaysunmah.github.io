@@ -94,6 +94,7 @@ margin: 0 auto;
 	position: absolute;
 	bottom: 0;
 	height: 25px;
+	max-width: 95%;
 	/*clear:both;*/
 }
 
@@ -465,6 +466,7 @@ hr {
 
 .service-icon {
 	margin-bottom: 20px;
+	text-align: center;
 }	
 
 /*.service-desc {
