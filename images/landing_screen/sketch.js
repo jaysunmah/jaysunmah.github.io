@@ -20,6 +20,7 @@
 // }
 
 var flock;
+var flockNum;
 
 var text;
 
@@ -30,7 +31,13 @@ function setup() {
 
   flock = new Flock();
   // Add an initial set of boids into the system
-  for (var i = 0; i < 100; i++) {
+  if (windowWidth < 500) {
+    flockNum = 20;
+  }
+  else {
+    flockNum = 70
+  }
+  for (var i = 0; i < flockNum; i++) {
     var b = new Boid(width/2,height/2);
     flock.addBoid(b);
   }
@@ -42,10 +49,19 @@ function draw() {
 
   textSize(60);
   fill(255);
-  textAlign(CENTER, CENTER);
+  textAlign(CENTER);
   textFont('Georgia');
-  var message = 'Jason Ma\nlol';
-  text(message, 0,0, windowWidth, windowHeight - 60);
+  var message = 'Jason Ma';
+  text(message, windowWidth / 2, windowHeight / 2);
+  
+  textSize(30);
+  var message2 = 'artist'
+  var message3 = 'programmer'
+  var messageWidth = textWidth('Jason Ma');
+  var message2Width = textWidth('resume')
+  text(message2, windowWidth / 2 - 94, windowHeight / 2 + 30);
+  ellipse(windowWidth / 2 - 49, windowHeight / 2 + 22.5, 8, 8);
+  text(message3, windowWidth / 2 + 44, windowHeight / 2 + 30);
  
 }
 
@@ -87,9 +103,10 @@ function Boid(x,y) {
   this.acceleration = createVector(0,0);
   this.velocity = createVector(random(-1,1),random(-1,1));
   this.position = createVector(x,y);
-  this.r = 3.0;
+  this.r = 12;
   this.maxspeed = 3;    // Maximum speed
   this.maxforce = 0.05; // Maximum steering force
+
 }
 
 Boid.prototype.run = function(boids) {
@@ -145,16 +162,65 @@ Boid.prototype.seek = function(target) {
 
 Boid.prototype.render = function() {
   // Draw a triangle rotated in the direction of velocity
-  var theta = this.velocity.heading() + radians(90);
-  fill(209, 231, 249);
-  stroke(200);
+  // var theta = this.velocity.heading() + radians(90);
+  var theta = PI + this.velocity.x / 3.5;
+
+  noStroke();
   push();
   translate(this.position.x,this.position.y);
   rotate(theta);
+
+  fill(209, 231, 249);  
+  //wings
   beginShape();
-  vertex(0, 2 * -this.r*2);
-  vertex(2 * -this.r, 2 * this.r*2);
-  vertex(2 * this.r, 2 * this.r*2);
+  vertex(-18,1);
+  vertex(18,1);
+  vertex(18,-3);
+  vertex(-18,-3);
+  endShape(CLOSE);
+ 
+//motor mount right (reversed)
+  beginShape();
+  vertex(-24,3);
+  vertex(-18,3);
+  vertex(-18,-4);
+  vertex(-24,-4);
+  endShape(CLOSE);
+  
+  
+//motor mount left
+  beginShape();
+  vertex(24,3);
+  vertex(18,3);
+  vertex(18,-4);
+  vertex(24,-4);
+  endShape(CLOSE);
+  
+//body
+  fill(255);
+  beginShape();
+  vertex(-7,5);
+  vertex(7,5);
+  vertex(7,-5);
+  vertex(-7,-5);
+  endShape(CLOSE);  
+  fill(196, 208, 245);
+  //right leg
+  beginShape();
+  vertex(-7,-5);
+  vertex(-2,-5);
+  vertex(-7,-14);
+  vertex(-7,-21);
+  vertex(-11,-14);
+  endShape(CLOSE);
+  
+  //left leg
+  beginShape();
+  vertex(7,-5);
+  vertex(2,-5);
+  vertex(7,-14);
+  vertex(7,-21);
+  vertex(11,-14);
   endShape(CLOSE);
   pop();
 }
@@ -170,7 +236,7 @@ Boid.prototype.borders = function() {
 // Separation
 // Method checks for nearby boids and steers away
 Boid.prototype.separate = function(boids) {
-  var desiredseparation = 25.0;
+  var desiredseparation = 35.0;
   var steer = createVector(0,0);
   var count = 0;
   // For every boid in the system, check if it's too close
@@ -247,3 +313,4 @@ Boid.prototype.cohesion = function(boids) {
     return createVector(0,0);
   }
 }
+
