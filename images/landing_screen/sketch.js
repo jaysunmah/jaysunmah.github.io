@@ -39,6 +39,14 @@ function setup() {
 function draw() {
   background(123, 143, 226);
   flock.run();
+
+  textSize(60);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textFont('Georgia');
+  var message = 'Jason Ma\nlol';
+  text(message, 0,0, windowWidth, windowHeight - 60);
+ 
 }
 
 // Add a new boid into the System

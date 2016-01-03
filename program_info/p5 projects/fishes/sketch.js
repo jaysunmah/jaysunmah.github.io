@@ -69,10 +69,10 @@ function draw()
   
  
  textSize(60);
- textAlign(CENTER, BOTTOM);
- textFont('Georgia')
- var message = 'Welcome to Jason.Ma.';
- var messageSize = textWidth(message);
+ fill(255);
+ textAlign(CENTER, CENTER);
+ textFont('Georgia');
+ var message = 'Jason Ma\nlol';
 
  text(message, 0,0, windowWidth, windowHeight - 60);
  
