@@ -429,41 +429,7 @@ function draw() {
     vertex(3 * positions[58][0], 3 * positions[58][1]);
     endShape();
     
-    // //HOODie allen
-    // fill(0);
-    // var hoodieHeight = (positions[62][1] - positions[33][1]) * 6;
-    // var hoodieWidth = (positions[14][0] - positions[33][0]) * 2;
-    // var hoodieRightX = 3* positions[14][0] + hoodieWidth;
-    // var hoodieRightY = 3* positions[28][1];
-    // var hoodieLeftX = 3 * positions[0][0] - hoodieWidth;
-    // var hoodieLeftY = 3 * positions[23][1];
-    // var hoodieUpX = 3 * positions[33][0]
-    // var hoodieUpY = 3 * positions[33][1] - hoodieHeight;
-    // var leftCornerX = 3 * positions[23][0];
-    // var leftCornerY = 3 * positions[65][1] - hoodieHeight;
-    // var rightCornerX = 3* positions[28][0];
-    // var rightCornerY = 3 * positions[69][1] - hoodieHeight;
-    // rect(rightCornerX, rightCornerY, 10, 10);
-    // rect(leftCornerX, leftCornerY, 10, 10);
-    // rect(hoodieUpX, hoodieUpY, 10, 10);
-    // rect(hoodieRightX, hoodieRightY, 10, 10);
-    // rect(hoodieLeftX, hoodieLeftY, 10, 10);
-    
-    // beginShape();
-    // vertex(hoodieRightX, hoodieRightY);
-    // vertex(3 * positions[14][0], 3 * positions[14][1]);
-    // vertex(3 * positions[15][0], 3 * positions[15][1]);
-    // vertex(3 * positions[16][0], 3 * positions[16][1]);
-    // vertex(3 * positions[17][0], 3 * positions[17][1]);
-    // vertex(3 * positions[21][0], 3 * positions[21][1]);
-    // vertex(3 * positions[20][0], 3 * positions[20][1]);
-    // vertex(3 * positions[19][0], 3 * positions[19][1]);
-    // vertex(3 * positions[0][0], 3 * positions[0][1]);
-    // vertex(hoodieLeftX, hoodieLeftY);
-    // vertex(leftCornerX, leftCornerY);
-    // vertex(hoodieUpX, hoodieUpY);
-    // vertex(rightCornerX, rightCornerY);
-    // endShape();
+ 
   }
 }
 
