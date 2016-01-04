@@ -456,13 +456,13 @@ hr {
 .team-social .social-twitter a{background: #62c6f8;}
 .team-social .social-dribble a{background: #d74980;}
 .team-social .social-deviantart a{background: #8da356;}
-.team-social .social-google a{background: #000;}
+.team-social .social-google a{background: #0077B5;}
 .team-social .social-vimeo a{background: #51a6d3;}
 .team-social .social-facebook a:hover{background: #4893ce;}
 .team-social .social-twitter a:hover{background: #82e6ff;}
-.team-social .social-dribble a:hover{background: #f769a0;}
+.team-social .social-github a:hover{background: #f769a0;}
 .team-social .social-deviantart a:hover{background: #adc376;}
-.team-social .social-google a:hover{background: #333;}
+/*.team-social .social-google a:hover{background: #333;}*/
 .team-social .social-vimeo a:hover{background: #71c6f3;}
 
 

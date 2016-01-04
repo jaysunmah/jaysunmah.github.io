@@ -44,7 +44,7 @@ function setup() {
 }
 
 function draw() {
-  background(123, 143, 226);
+  background(122, 167, 214);
   flock.run();
 
   textSize(60);
@@ -195,8 +195,43 @@ Boid.prototype.render = function() {
   vertex(18,-4);
   vertex(24,-4);
   endShape(CLOSE);
+
+//propeller shaft right
+  fill(255);
+  beginShape();
+  vertex(-22,3);
+  vertex(-20,3);
+  vertex(-20,7);
+  vertex(-22,7);
+  endShape(CLOSE);
+
+//propeller shaft left
+  beginShape();
+  vertex(22,3);
+  vertex(20,3);
+  vertex(20,7);
+  vertex(22,7);
+  endShape(CLOSE);
+
+//propeller right  
+fill(123, 134, 226);
+  beginShape();
+  vertex(-12,7);
+  vertex(-12,9);
+  vertex(-30,9);
+  vertex(-30,7);
+  endShape(CLOSE);
   
+//propeller left
+  beginShape();
+  vertex(12,7);
+  vertex(12,9);
+  vertex(30,9);
+  vertex(30,7);
+  endShape(CLOSE);
+ 
 //body
+  // fill(251,252, 208);
   fill(255);
   beginShape();
   vertex(-7,5);
@@ -204,23 +239,25 @@ Boid.prototype.render = function() {
   vertex(7,-5);
   vertex(-7,-5);
   endShape(CLOSE);  
+  
+  
   fill(196, 208, 245);
   //right leg
   beginShape();
   vertex(-7,-5);
   vertex(-2,-5);
-  vertex(-7,-14);
-  vertex(-7,-21);
-  vertex(-11,-14);
+  vertex(-10,-14);
+  vertex(-10,-21);
+  vertex(-14,-14);
   endShape(CLOSE);
   
   //left leg
   beginShape();
   vertex(7,-5);
   vertex(2,-5);
-  vertex(7,-14);
-  vertex(7,-21);
-  vertex(11,-14);
+  vertex(10,-14);
+  vertex(10,-21);
+  vertex(14,-14);
   endShape(CLOSE);
   pop();
 }
