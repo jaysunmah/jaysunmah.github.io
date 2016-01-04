@@ -1,3 +1,6 @@
+// var img;
+
+
 
 // function setup() 
 // {
@@ -23,7 +26,7 @@ var text;
 
 function setup() {
   // createCanvas(windowWidth, windowHeight);
-  var myCanvas = createCanvas(windowWidth, 0.95 * windowHeight); 
+  var myCanvas = createCanvas(windowWidth, windowHeight); 
   myCanvas.parent('p5Canvas');
 
   flock = new Flock();
