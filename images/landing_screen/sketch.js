@@ -43,7 +43,6 @@ function setup() {
 function draw() {
   background(122, 167, 214);
   flock.run();
-<<<<<<< HEAD
 
   textSize(60);
   fill(255);
@@ -61,8 +60,6 @@ function draw() {
   ellipse(windowWidth / 2 - 49, windowHeight / 2 + 22.5, 8, 8);
   text(message3, windowWidth / 2 + 44, windowHeight / 2 + 30);
  
-=======
->>>>>>> parent of fc4ff10... ploooeeeyy
 }
 
 // Add a new boid into the System
