@@ -25,9 +25,9 @@ var flockNum;
 var text;
 
 function setup() {
-  // createCanvas(windowWidth, windowHeight);
-  var myCanvas = createCanvas(windowWidth, windowHeight); 
-  myCanvas.parent('p5Canvas');
+  createCanvas(windowWidth, windowHeight);
+  // var myCanvas = createCanvas(windowWidth, windowHeight); 
+  // myCanvas.parent('p5Canvas');
 
   flock = new Flock();
   // Add an initial set of boids into the system
