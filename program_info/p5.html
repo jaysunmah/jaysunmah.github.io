@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>p5 projects</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+
+<header class="navbar navbar-default navbar-static-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../index.html" class="navbar-brand">Jason.Ma</a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+    </nav>
+  </div>
+</header>
+
+<!-- Begin Body -->
+<div class="container">
+	<div class="row">
+  			<div class="col-md-3" id="leftCol">
+              	
+				<div class="well"> 
+              	<ul class="nav nav-stacked" id="sidebar">
+                  <li><a href="#flocking">Flocking Behavior</a></li>
+                  <li><a href="#fish">Fishes</a></li>
+                  <li><a href="#sail">Sail</a></li>
+                  <li><a href="#face">Facial Recognition</a></li>
+                  <li><a href="#sound">Sound Face</a></li>
+                  <li><a href="#screen">Screen Saver</a></li>
+                  <li><a href="#tank">Tank Animation</a></li>
+
+              	</ul>
+  				</div>
+
+      		</div>  
+      		<div class="col-md-9">
+              	<h2 id="sec0">P5.JS</h2>
+                p5.js a JS client-side library for creating graphic and interactive experiences, based on the core principles of Processing. The library contains modules specifically designed towards helping artists make interactive and emerging media. More information on the library can be found <a href="http://p5js.org/">here</a>.
+           
+              	<hr class="col-md-12">
+              	
+              	<h2 id="sec1">Content</h2>
+              	<p>
+                The following are my biggest pieces, arranged in level of complexity from the most complex at the top to the basics at the bottom. The pieces were created during my Fall 2015 semester at Carnegie Mellon's <a href="http://ideate.cmu.edu/about-ideate/departments/art/electronic-media-studio-ii/">Electronic Media Studio: Intro to Interactivity</a>.
+              	</p>
+
+              <hr>
+
+<div class = "col-md-12 info-box">
+                <h2 id="flocking">Flocking Behavior</h2>
+                <p>The flocking behavior code is derived from <a href = "http://p5js.org/examples/examples/Simulate_Flocking.php">Daniel Shiffman's 'Nature of Code'</a>. The piece implements tiny quadcopters which follow the adhesion, cohesion, and separation aspects of the flocking behavior.
+                  <div style="height:250px;border:1px solid #ccc;overflow:auto;" class = "col-md-7 code-info">
+                    <pre>
+var flock;
+var flockNum;
+
+var text;
+
+function setup() {
+  // createCanvas(windowWidth, windowHeight);
+  var myCanvas = createCanvas(windowWidth, 0.95 * windowHeight); 
+  myCanvas.parent('p5Canvas');
+
+  flock = new Flock();
+  // Add an initial set of boids into the system
+  if (windowWidth < 500) {
+    flockNum = 20;
+  }
+  else {
+    flockNum = 70
+  }
+  for (var i = 0; i < flockNum; i++) {
+    var b = new Boid(width/2,height/2);
+    flock.addBoid(b);
+  }
+}
+
+function draw() {
+  background(122, 167, 214);
+  flock.run();
+
+  textSize(60);
+  fill(255);
+  textAlign(CENTER);
+  textFont('Georgia');
+  var message = 'Jason Ma';
+  text(message, windowWidth / 2, windowHeight / 2);
+  
+  textSize(30);
+  var message2 = 'artist'
+  var message3 = 'programmer'
+  var messageWidth = textWidth('Jason Ma');
+  var message2Width = textWidth('resume')
+  text(message2, windowWidth / 2 - 94, windowHeight / 2 + 30);
+  ellipse(windowWidth / 2 - 49, windowHeight / 2 + 22.5, 8, 8);
+  text(message3, windowWidth / 2 + 44, windowHeight / 2 + 30);
+ 
+}
+
+// Add a new boid into the System
+// function mouseDragged() {
+//   flock.addBoid(new Boid(mouseX,mouseY));
+// }
+
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Flock object
+// Does very little, simply manages the array of all the boids
+
+function Flock() {
+  // An array for all the boids
+  this.boids = []; // Initialize the array
+}
+
+Flock.prototype.run = function() {
+  for (var i = 0; i < this.boids.length; i++) {
+    this.boids[i].run(this.boids);  // Passing the entire list of boids to each boid individually
+  }
+}
+
+Flock.prototype.addBoid = function(b) {
+  this.boids.push(b);
+}
+
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Boid class
+// Methods for Separation, Cohesion, Alignment added
+
+function Boid(x,y) {
+  this.acceleration = createVector(0,0);
+  this.velocity = createVector(random(-1,1),random(-1,1));
+  this.position = createVector(x,y);
+  this.r = 12;
+  this.maxspeed = 3;    // Maximum speed
+  this.maxforce = 0.05; // Maximum steering force
+
+}
+
+Boid.prototype.run = function(boids) {
+  this.flock(boids);
+  this.update();
+  this.borders();
+  this.render();
+}
+
+Boid.prototype.applyForce = function(force) {
+  // We could add mass here if we want A = F / M
+  this.acceleration.add(force);
+}
+
+// We accumulate a new acceleration each time based on three rules
+Boid.prototype.flock = function(boids) {
+  var sep = this.separate(boids);   // Separation
+  var ali = this.align(boids);      // Alignment
+  var coh = this.cohesion(boids);   // Cohesion
+  // Arbitrarily weight these forces
+  sep.mult(1.5);
+  ali.mult(1.0);
+  coh.mult(1.0);
+  // Add the force vectors to acceleration
+  this.applyForce(sep);
+  this.applyForce(ali);
+  this.applyForce(coh);
+}
+
+// Method to update location
+Boid.prototype.update = function() {
+  // Update velocity
+  this.velocity.add(this.acceleration);
+  // Limit speed
+  this.velocity.limit(this.maxspeed);
+  this.position.add(this.velocity);
+  // Reset accelertion to 0 each cycle
+  this.acceleration.mult(0);
+}
+
+// A method that calculates and applies a steering force towards a target
+// STEER = DESIRED MINUS VELOCITY
+Boid.prototype.seek = function(target) {
+  var desired = p5.Vector.sub(target,this.position);  // A vector pointing from the location to the target
+  // Normalize desired and scale to maximum speed
+  desired.normalize();
+  desired.mult(this.maxspeed);
+  // Steering = Desired minus Velocity
+  var steer = p5.Vector.sub(desired,this.velocity);
+  steer.limit(this.maxforce);  // Limit to maximum steering force
+  return steer;
+}
+
+Boid.prototype.render = function() {
+  // Draw a triangle rotated in the direction of velocity
+  // var theta = this.velocity.heading() + radians(90);
+  var theta = PI + this.velocity.x / 3.5;
+
+  noStroke();
+  push();
+  translate(this.position.x,this.position.y);
+  rotate(theta);
+
+  fill(209, 231, 249);  
+  //wings
+  beginShape();
+  vertex(-18,1);
+  vertex(18,1);
+  vertex(18,-3);
+  vertex(-18,-3);
+  endShape(CLOSE);
+ 
+//motor mount right (reversed)
+  beginShape();
+  vertex(-24,3);
+  vertex(-18,3);
+  vertex(-18,-4);
+  vertex(-24,-4);
+  endShape(CLOSE);
+  
+  
+//motor mount left
+  beginShape();
+  vertex(24,3);
+  vertex(18,3);
+  vertex(18,-4);
+  vertex(24,-4);
+  endShape(CLOSE);
+
+//propeller shaft right
+  fill(255);
+  beginShape();
+  vertex(-22,3);
+  vertex(-20,3);
+  vertex(-20,7);
+  vertex(-22,7);
+  endShape(CLOSE);
+
+//propeller shaft left
+  beginShape();
+  vertex(22,3);
+  vertex(20,3);
+  vertex(20,7);
+  vertex(22,7);
+  endShape(CLOSE);
+
+//propeller right  
+fill(123, 134, 226);
+  beginShape();
+  vertex(-12,7);
+  vertex(-12,9);
+  vertex(-30,9);
+  vertex(-30,7);
+  endShape(CLOSE);
+  
+//propeller left
+  beginShape();
+  vertex(12,7);
+  vertex(12,9);
+  vertex(30,9);
+  vertex(30,7);
+  endShape(CLOSE);
+ 
+//body
+  // fill(251,252, 208);
+  fill(255);
+  beginShape();
+  vertex(-7,5);
+  vertex(7,5);
+  vertex(7,-5);
+  vertex(-7,-5);
+  endShape(CLOSE);  
+  
+  
+  fill(196, 208, 245);
+  //right leg
+  beginShape();
+  vertex(-7,-5);
+  vertex(-2,-5);
+  vertex(-10,-14);
+  vertex(-10,-21);
+  vertex(-14,-14);
+  endShape(CLOSE);
+  
+  //left leg
+  beginShape();
+  vertex(7,-5);
+  vertex(2,-5);
+  vertex(10,-14);
+  vertex(10,-21);
+  vertex(14,-14);
+  endShape(CLOSE);
+  pop();
+}
+
+// Wraparound
+Boid.prototype.borders = function() {
+  if (this.position.x < -this.r)  this.position.x = width +this.r;
+  if (this.position.y < -this.r)  this.position.y = height+this.r;
+  if (this.position.x > width +this.r) this.position.x = -this.r;
+  if (this.position.y > height+this.r) this.position.y = -this.r;
+}
+
+// Separation
+// Method checks for nearby boids and steers away
+Boid.prototype.separate = function(boids) {
+  var desiredseparation = 35.0;
+  var steer = createVector(0,0);
+  var count = 0;
+  // For every boid in the system, check if it's too close
+  for (var i = 0; i < boids.length; i++) {
+    var d = p5.Vector.dist(this.position,boids[i].position);
+    // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
+    if ((d > 0) && (d < desiredseparation)) {
+      // Calculate vector pointing away from neighbor
+      var diff = p5.Vector.sub(this.position,boids[i].position);
+      diff.normalize();
+      diff.div(d);        // Weight by distance
+      steer.add(diff);
+      count++;            // Keep track of how many
+    }
+  }
+  // Average -- divide by how many
+  if (count > 0) {
+    steer.div(count);
+  }
+
+  // As long as the vector is greater than 0
+  if (steer.mag() > 0) {
+    // Implement Reynolds: Steering = Desired - Velocity
+    steer.normalize();
+    steer.mult(this.maxspeed);
+    steer.sub(this.velocity);
+    steer.limit(this.maxforce);
+  }
+  return steer;
+}
+
+// Alignment
+// For every nearby boid in the system, calculate the average velocity
+Boid.prototype.align = function(boids) {
+  var neighbordist = 50;
+  var sum = createVector(0,0);
+  var count = 0;
+  for (var i = 0; i < boids.length; i++) {
+    var d = p5.Vector.dist(this.position,boids[i].position);
+    if ((d > 0) && (d < neighbordist)) {
+      sum.add(boids[i].velocity);
+      count++;
+    }
+  }
+  if (count > 0) {
+    sum.div(count);
+    sum.normalize();
+    sum.mult(this.maxspeed);
+    var steer = p5.Vector.sub(sum,this.velocity);
+    steer.limit(this.maxforce);
+    return steer;
+  } else {
+    return createVector(0,0);
+  }
+}
+
+// Cohesion
+// For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
+Boid.prototype.cohesion = function(boids) {
+  var neighbordist = 50;
+  var sum = createVector(0,0);   // Start with empty vector to accumulate all locations
+  var count = 0;
+  for (var i = 0; i < boids.length; i++) {
+    var d = p5.Vector.dist(this.position,boids[i].position);
+    if ((d > 0) && (d < neighbordist)) {
+      sum.add(boids[i].position); // Add location
+      count++;
+    }
+  }
+  if (count > 0) {
+    sum.div(count);
+    return this.seek(sum);  // Steer towards the location
+  } else {
+    return createVector(0,0);
+  }
+}
+
+
+                    </pre>
+                  </div>
+                <img class = "img-responsive col-md-5" src="p5_assets/flocking_preview.png" alt="" />
+              </div>
+            <hr>
+
+            <div class = "col-md-12 info-box">
+              <h2 id="fish">Fishes</h2>
+              <p> 
+              This piece studies the basic principles of memory management with continuously generated objects. The project also implements basic json parsing, using the Weather Channel's api and reading the local wind pattern. The fishes will move in the vector direction of the local wind current.
+              </p>
+                <img class = "img-responsive col-md-5" src="p5_assets/fishes_preview.png" alt="" />
+                  <div style="height:250px;border:1px solid #ccc;overflow:auto;" class = "col-md-7 code-info">
+                    <pre>var myDiameter = 100;
+var posX = 0;
+var posY = 0;
+var time = 0;
+var lines = [];
+var xoff = 0.0;
+var x = 300;
+var y = 0;
+var dX = 0;
+var dY = 0;
+var angle = 0;
+var positionShifts = 0;
+
+
+
+function setup() 
+{
+  background(0);
+  // var myCanvas = createCanvas(windowWidth, windowHeight); 
+  // myCanvas.parent('p5Canvas');
+  createCanvas(windowWidth, windowHeight);
+  // var url = 'http://api.openweathermap.org/data/2.5/weather?q=New%20York,NY&units=imperial&APPID=7bbbb47522848e8b9c26ba35c226c734';
+  var url = 'http://api.openweathermap.org/data/2.5/weather?id=5206379&appid=bd82977b86bf27fb59a04b61b657fb6f';
+  
+  
+  loadJSON(url, gotWeather);
+  // Circle starts in the middle
+  position = createVector(width/2, height/2);
+  // wind starts as (0,0)
+  wind = createVector();
+  noStroke();  
+  bug = new Fish(300,300);
+}
+function draw() 
+{ 
+
+  // print(wind.heading())
+ background(106,202,243);
+
+  // push();  
+  // translate(windowWidth, windowHeight / 2);
+  // rotate(wind.heading() + 3 * PI / 2);
+
+  x1 = random(windowWidth);
+  y1 = random(windowHeight / 4);
+
+  if (time % 40 === 0) {
+    lines.push(new Fish(x1, y1));
+  }
+  for (var i=0; i<lines.length; i++) {
+    // if (time % 20 === 0) {
+    //   lines[i].updatePositionShifts(xoff);
+    // }
+    lines[i].updatePositionShifts();
+    lines[i].move();
+    lines[i].moveHead();
+    lines[i].moveBody();
+    lines[i].moveArms();
+    lines[i].moveTail();
+    lines[i].moveEndTail();
+    lines[i].display();
+    if (lines[i].heady > windowHeight + windowWidth) {
+      lines.splice(i, 1);
+    }
+  }
+  // pop();
+  time += 1;
+  xoff += 0.1;
+  
+ 
+ textSize(60);
+ textAlign(CENTER, BOTTOM);
+ textFont('Georgia')
+ var message = 'Welcome to Jason.Ma.';
+ var messageSize = textWidth(message);
+
+ text(message, 0,0, windowWidth, windowHeight - 60);
+ 
+textSize(40);
+
+ if (mouseX < windowWidth / 2) {
+   text("Programmer", 0, windowHeight / 2 -55, windowWidth, windowHeight);
+ }
+ else {
+   text("Artist", 0, windowHeight / 2 -55, windowWidth, windowHeight);
+ }
+ // else {
+ //   text("Programmer. Artist.", 0, windowHeight / 2 + 65, windowWidth, windowHeight);
+
+ // }
+
+}
+
+
+// Fish class
+function Fish(x, y) {
+  this.headx = x + 6;
+  this.heady = y - 30;
+  this.positionShifts = this.headx;
+  this.bodyx = x - 7;
+  this.bodyy = y - 30;
+  this.tailx = x - 15;
+  this.taily = y - 60;
+  this.endTailx = x ;
+  this.endTaily = y - 90;
+  this.frontHeadx = x;
+  this.frontHeady = y;
+  this.armx = x;
+  this.army = y - 60;
+  this.offx = random(100);
+
+  this.display = function() {
+    fill(195,204,219);
+    beginShape();
+    vertex(this.frontHeadx - 2, this.frontHeady);
+    vertex(this.frontHeadx - 26, this.frontHeady);
+    vertex(this.headx - 30, this.heady);
+    vertex(this.headx, this.heady);
+    endShape();
+    
+    fill(255);
+    ellipse(this.frontHeadx - 2, this.frontHeady - 10, 7, 7);
+    ellipse(this.frontHeadx - 26, this.frontHeady - 10, 7, 7);
+    
+    
+    fill(108,114,138);
+    beginShape();
+    vertex(this.bodyx - 4, this.bodyy);
+    vertex(this.armx + 6, this.army + 7);
+    vertex(this.armx, this.army + 5);
+    vertex((this.bodyx - 16 + this.tailx) / 2, (this.bodyy +  2* this.taily) / 3);
+    vertex((this.headx - 24 + this.tailx - 20) / 2, (this.heady + 2 * this.taily) / 3);
+    vertex(this.armx - 30, this.army + 5);
+    vertex(this.armx - 36, this.army + 7);
+    vertex(this.bodyx - 26, this.bodyy);
+    endShape();
+    
+    fill(131,143,246);
+    beginShape();
+    vertex(this.bodyx - 4, this.bodyy);
+    vertex(this.tailx - 10, this.taily);
+    vertex(this.tailx - 20, this.taily);
+    vertex(this.bodyx - 26, this.bodyy);
+    endShape();
+    
+    fill(0,139,211);
+    beginShape();
+    vertex(this.tailx - 10, this.taily);
+    vertex(this.endTailx, this.endTaily);
+    vertex(this.endTailx - 30, this.endTaily);
+    vertex(this.tailx - 20, this.taily);
+    endShape();
+  };
+    this.move = function() {
+    this.frontHeady += 1;
+    dX = (this.positionShifts - this.frontHeadx) / 10;
+    this.frontHeadx += dX;
+  };
+  
+  this.moveHead = function() {
+    this.heady += 1;
+    dHead = (this.frontHeadx - this.headx) / 7;
+    this.headx += dHead;
+  };
+  this.moveBody = function() {
+    this.bodyy += 1;
+    dBody = (this.headx - this.bodyx) / 2;
+    this.bodyx += dBody;
+  };
+  
+  this.moveArms = function() {
+    this.army += 1;
+    dArm = (this.headx - this.armx) / 10;
+    this.armx += dArm;
+  };
+    this.moveTail = function() {
+    this.taily += 1;
+    dTail = (this.bodyx - this.tailx) / 5;
+    this.tailx += dTail;
+  };
+  
+  this.moveEndTail = function() {
+    this.endTaily += 1;
+    dEndTail = (this.tailx - this.endTailx) / 10;
+    this.endTailx += dEndTail;
+  };
+  
+  this.updatePositionShifts = function() {
+    // this.positionShifts = this.headx + (mouseX / windowWidth) * random(-2000,2000);
+    var change = noise(this.offx, this.heady/100) * 100 - 50;
+
+    // change *= (mouseX / windowWidth);
+    if (mouseX < windowWidth /2 ) {
+      change = 100 * cos(wind.heading() + 3 * PI / 2);
+    }
+    this.offx += 0.01;
+    if(frameCount%60==0)
+      console.log(change);
+    this.positionShifts = this.frontHeadx + change;
+  };
+}
+
+function gotWeather(weather) {
+  
+  // Get the angle (convert to radians)
+  var angle = radians(Number(weather.wind.deg));
+  // Get the wind speed
+  var windmag = Number(weather.wind.speed);
+  
+  // Make a vector
+  wind = p5.Vector.fromAngle(angle);
+}
+
+                    </pre>
+                  </div>
+              </div>
+              
+              <hr>
+
+              <div class = "col-md-12 info-box">
+                <h2 id="sail">Sail</h2>
+                <p>
+                This project studies sound analysis and visualization. The piece interprets any given sound file and breaks the song into 256 buckets based on the sound frequency. 
+                </p>
+                  <div style="height:250px;border:1px solid #ccc;overflow:auto;" class = "col-md-7 code-info">
+                    <pre>
+var mic, fft;
+var song
+var x = 0
+var color = 0
+var colorPicker = 0;
+var isIncreasing = true;
+var bgColor = 0;
+var justThundered = false
+var timer = 0
+var thunderTime = 0
+
+function preload() {
+  song = loadSound('/audio/sail.mp3')
+}
+
+function setup() {
+   createCanvas(windowWidth,windowHeight);
+   noFill();
+
+   fft = new p5.FFT();
+   fft.setInput(song);
+   song.play()
+   song.addCue(17.38, cue, "thunder")
+   song.addCue(21.40, cue, "thunder")
+   song.addCue(25.41, cue, "thunder")
+   song.addCue(29.31, cue, "thunder")
+   song.addCue(31.20, cue, "thunder")
+   song.addCue(49.50, cue, "thunder")
+   song.addCue(53.58, cue, "thunder")
+   song.addCue(57.69, cue, "thunder")
+   song.addCue(61.68, cue, "thunder")
+   song.addCue(63.70, cue, "thunder")
+   song.addCue(65.60, cue, "thunder")
+   song.addCue(69.73, cue, "thunder")
+   song.addCue(73.73, cue, "thunder")
+   song.addCue(77.83, cue, "thunder")
+   song.addCue(79.91, cue, "thunder")
+   song.addCue(81.81, cue, "thunder")
+    song.addCue(98.000, cue, "thunder")
+   song.addCue(102.00, cue, "thunder")
+   song.addCue(106.110, cue, "thunder")
+   song.addCue(110.146, cue, "thunder")
+   song.addCue(118.246, cue, "thunder")
+   song.addCue(122.146, cue, "thunder")
+   song.addCue(126.288, cue, "thunder")
+   song.addCue(130.188, cue, "thunder")
+  
+   song.addCue(178.788, cue, "thunder")
+   song.addCue(211.000, cue, "thunder")
+   song.addCue(215.110, cue, "thunder")
+   song.addCue(219.000, cue, "thunder")
+   song.addCue(223.001, cue, "thunder")
+  // noStroke();
+  stroke(255);
+  strokeWeight(5);
+  background(0);
+
+}
+
+
+function draw() {
+
+    resetThundered()
+    if (justThundered) {
+    background(0,0,0,40)      
+    }
+
+   var spectrum = fft.analyze();
+  fill(abs(255 - colorPicker) % 255, (colorPicker) % 255, 255)
+  color += 1
+   beginShape();
+   for (i = 0; i<20; i++) {
+    vertex(i * 150, map(spectrum[i + 20], 0, 255, height + height / 2, -height / 4) + height / 2);
+   }
+   vertex(windowWidth, windowHeight)
+   vertex(0, windowHeight);
+   endShape();
+
+   x += 1;
+     if (isIncreasing) {
+    colorPicker += 1;
+  }
+  else {
+    colorPicker -= 1;
+  }
+  if (colorPicker == 180) {
+    isIncreasing = false;
+  }
+  if (colorPicker == 2 && isIncreasing == false) {
+    isIncreasing = true;
+  }
+
+  thunderTime += 1
+}
+function mousePressed() {
+  screenJitter()
+}
+function resetThundered() {
+  if (thunderTime == 20) {
+    print('resetting')
+    justThundered = false
+  }
+  // background(0)
+}
+function screenJitter() {
+  print('wo')
+  background(255,255,255)
+  justThundered = true
+  thunderTime = 0
+}
+
+function cue(id) {
+  if (id == "thunder") {
+    screenJitter()
+  }
+}
+                    </pre>
+                  </div>
+                <img class = "img-responsive col-md-5" src="p5_assets/sail_preview.png" alt="" />
+              </div>
+
+              <hr>
+
+              <div class = "col-md-12 info-box">
+              <h2 id="face">Facial Recognition</h2>
+
+                <img class = "img-responsive col-md-5" src="p5_assets/p5face_preview.png" alt="" />
+                
+            <div style="height:250px;border:1px solid #ccc;overflow:auto;" class = "col-md-7 code-info">
+              <pre>
+var ctracker;
+var prevPosition = 0;
+var flag = true;
+var timer = 0;
+var count = 0;
+
+function setup() {
+
+  // setup camera capture
+  var videoInput = createCapture(VIDEO);
+  videoInput.size(400, 300);
+  videoInput.position(0, 0);
+
+  //hide video feed
+  videoInput.hide();
+
+  // setup canvas
+  var cnv = createCanvas(windowWidth, windowHeight);
+  cnv.position(0, 0);
+
+  // setup tracker
+  ctracker = new clm.tracker();
+  ctracker.init(pModel);
+  ctracker.start(videoInput.elt);
+
+  noStroke();
+
+}
+
+function draw() {
+  background(255, 255, 255);
+  fill(0);
+  // get array of face marker positions [x, y] format
+  var positions = ctracker.getCurrentPosition();
+
+
+
+  if (positions[0] !== undefined) {
+    //1
+    var leftCheekY = (positions[34][1] + positions[1][1]) / 2 * 3;
+    var leftCheekX = (4 * positions[1][0] + positions[34][0]) * 3 / 5;
+    var rightCheekY = (positions[40][1] + positions[13][1]) / 2 * 3;
+    var rightCheekX = (positions[40][0] + 4 * positions[13][0]) * 3 / 5;
+    // rect(leftCheekX, leftCheekY, 10, 10);
+    // rect(rightCheekX, rightCheekY, 10, 10);
+    
+    var leftCheekY1 = (positions[36][1] + positions[2][1]) / 2 * 3;
+    var leftCheekX1 = (positions[1][0] + positions[36][0]) / 2 * 3;
+    var rightCheekY1 = (positions[38][1] + positions[12][1]) / 2 * 3;
+    var rightCheekX1 = (positions[38][0] + positions[12][0]) / 2 * 3;
+    // rect(leftCheekX1, leftCheekY1, 10, 10);
+    // rect(rightCheekX1, rightCheekY1, 10, 10);
+    
+    var rightStacheX = (positions[49][0] + positions[11][0]) / 2 * 3;
+    var rightStacheY = (positions[49][1] + positions[11][1]) / 2 * 3;
+    var leftStacheX = (positions[45][0] + positions[3][0]) / 2 * 3;
+    var leftStacheY = (positions[45][1] + positions[3][1]) / 2 * 3;
+    // rect(rightStacheX, rightStacheY, 10, 10);
+    // rect(leftStacheX, leftStacheY, 10, 10);
+    
+    var rightStacheX1 = (positions[5][0] + 3 * positions[9][0]) / 4 * 3;
+    var rightStacheY1 = (positions[50][1] + 2 * positions[8][1]);
+    var leftStacheX1 = (3 * positions[5][0] + positions[9][0]) / 4 * 3;
+    var leftStacheY1 = (positions[44][1] + 2 * positions[6][1]);
+    rect(rightStacheX1, rightStacheY1, 10, 10);
+    rect(leftStacheX1, leftStacheY1, 10, 10);
+    
+    var rightForeheadX = (positions[33][0] + positions[40][0]) / 2 * 3;
+    var rightForeheadY = (positions[33][1] + positions[14][1]) / 2 * 3;
+    var leftForeheadX = (positions[33][0] + positions[34][0]) / 2 * 3;
+    var leftForeheadY = (positions[33][1] + positions[0][1]) / 2 * 3;
+    // rect(rightForeheadX, rightForeheadY, 10, 10);
+    // rect(leftForeheadX,leftForeheadY, 10, 10);
+    
+    var rightForeheadX1 = (positions[28][0] + positions[14][0]) / 2 * 3;
+    var rightForeheadY1 = (positions[28][1] + positions[14][1]) / 2 * 3;
+    var leftForeheadX1 = (positions[0][0] + positions[23][0]) / 2 * 3;
+    var leftForeheadY1 = (positions[0][1] + positions[23][1]) / 2 * 3;
+    // rect(rightForeheadX1, rightForeheadY1);
+    // rect(leftForeheadX1, leftForeheadY1);
+    
+
+    
+    //shadows on the side of the head
+    fill(43, 28, 9);
+    beginShape();
+    // vertex(3 * positions[16][0], 3 * positions[16][1]);
+    vertex(rightForeheadX1, rightForeheadY1);
+    vertex(rightCheekX, rightCheekY);
+    vertex(3 * positions[12][0], 3 * positions[12][1]);
+    vertex(3 * positions[13][0], 3 * positions[13][1]);
+    vertex(3 * positions[14][0], 3 * positions[14][1]);
+    vertex(3 * positions[15][0], 3 * positions[15][1]);
+    endShape();
+
+    beginShape();
+    // vertex(3 * positions[20][0], 3 * positions[20][1]);
+    vertex(leftForeheadX1, leftForeheadY1);
+    vertex(leftCheekX, leftCheekY);
+    vertex(3 * positions[2][0], 3 * positions[2][1]);
+    vertex(3 * positions[1][0], 3 * positions[1][1]);
+    vertex(3 * positions[0][0], 3 * positions[0][1]);
+    vertex(3 * positions[19][0], 3 * positions[19][1]);
+    endShape();
+
+    
+    //shadow under cheek
+    fill(114, 61, 27);
+    beginShape();
+    vertex(rightCheekX, rightCheekY);
+    vertex(rightCheekX1, rightCheekY1);
+    vertex(rightStacheX, rightStacheY);
+    vertex(3 * positions[12][0], 3 * positions[12][1]);
+    endShape();
+
+    beginShape();
+    vertex(leftCheekX, leftCheekY);
+    vertex(leftCheekX1, leftCheekY1);
+    vertex(leftStacheX, leftStacheY);
+    vertex(3 * positions[2][0], 3 * positions[2][1]);
+    endShape();
+    
+    //side cheek shading
+    fill(154, 89, 72);
+    beginShape();
+    vertex(rightStacheX, rightStacheY);
+    vertex(3 * positions[9][0], 3 * positions[9][1]);
+    vertex(3 * positions[10][0], 3 * positions[10][1]);
+    vertex(3 * positions[11][0], 3 * positions[11][1]);
+    vertex(3 * positions[12][0], 3 * positions[12][1]);
+    endShape();
+    
+    beginShape();
+    vertex(leftStacheX, leftStacheY);
+    vertex(3 * positions[5][0], 3 * positions[5][1]);
+    vertex(3 * positions[4][0], 3 * positions[4][1]);
+    vertex(3 * positions[3][0], 3 * positions[3][1]);
+    vertex(3 * positions[2][0], 3 * positions[2][1]);
+    endShape();
+    
+    //sideOfNoseCheek
+    fill(123, 87, 65);
+    beginShape();
+    vertex(rightStacheX, rightStacheY);
+    vertex(rightCheekX1, rightCheekY1);
+    vertex(3 * positions[39][0], 3 * positions[39][1]);
+    vertex(3 * positions[38][0], 3 * positions[38][1]);
+    endShape();
+    
+    beginShape();
+    vertex(leftStacheX, leftStacheY);
+    vertex(leftCheekX1, leftCheekY1);
+    vertex(3 * positions[35][0], 3 * positions[35][1]);
+    vertex(3 * positions[36][0], 3 * positions[36][1]);
+    endShape();
+    
+    //super light skinned cheek
+    fill(230, 180, 170);
+    beginShape();
+    vertex(rightCheekX1, rightCheekY1);
+    vertex(rightCheekX, rightCheekY);
+    vertex(rightForeheadX1, rightForeheadY1);
+    vertex(3 * positions[28][0], 3 * positions[28][1]);
+    vertex(3 * positions[70][0], 3 * positions[70][1]);
+    vertex(3 * positions[31][0], 3 * positions[31][1]);
+    vertex(3 * positions[69][0], 3 * positions[69][1]);
+    vertex(3 * positions[30][0], 3 * positions[30][1]);
+    vertex(rightForeheadX, rightForeheadY);
+    vertex(3 * positions[40][0], 3 * positions[40][1]);
+    vertex(3 * positions[39][0], 3 * positions[39][1]);
+    endShape();
+    
+    beginShape();
+    vertex(leftForeheadX1, leftForeheadY1);
+    vertex(leftCheekX, leftCheekY);
+    vertex(leftCheekX1, leftCheekY1);
+    vertex(3 * positions[35][0], 3 * positions[35][1]);
+    vertex(3 * positions[34][0], 3 * positions[34][1]);
+    vertex(leftForeheadX, leftForeheadY);
+    vertex(3 * positions[25][0], 3 * positions[25][1]);
+    vertex(3 * positions[65][0], 3 * positions[65][1]);
+    vertex(3 * positions[26][0], 3 * positions[26][1]);
+    vertex(3 * positions[66][0], 3 * positions[66][1]);
+    vertex(3 * positions[23][0], 3 * positions[23][1]);
+    endShape();
+    
+    
+    //beard
+    fill(0);
+    beginShape();
+    vertex(3 * positions[36][0], 3 * positions[36][1]);
+    vertex(3 * positions[37][0], 3 * positions[37][1]);
+    vertex(3 * positions[38][0], 3 * positions[38][1]);
+    vertex(rightStacheX, rightStacheY);
+    vertex(3 * positions[9][0], 3 * positions[9][1]);
+    vertex(3 * positions[8][0], 3 * positions[8][1]);
+    vertex(3 * positions[7][0], 3 * positions[7][1]);
+    vertex(3 * positions[6][0], 3 * positions[6][1]);
+    vertex(3 * positions[5][0], 3 * positions[5][1]);
+    vertex(leftStacheX, leftStacheY);
+    endShape();
+    
+    fill(184, 132, 104);
+    beginShape();
+    vertex(rightStacheX1, rightStacheY1);
+    vertex(3 * positions[52][0], 3 * positions[52][1]);
+    vertex(3 * positions[53][0], 3 * positions[53][1]);
+    vertex(3 * positions[54][0], 3 * positions[54][1]);
+    vertex(leftStacheX1, leftStacheY1); 
+    vertex(3 * positions[44][0], 3 * positions[44][1]);
+    vertex(3 * positions[45][0], 3 * positions[45][1]);
+    vertex(3 * positions[46][0], 3 * positions[46][1]);
+    vertex(3 * positions[47][0], 3 * positions[47][1]);
+    vertex(3 * positions[48][0], 3 * positions[48][1]);
+    vertex(3 * positions[49][0], 3 * positions[49][1]);
+    vertex(3 * positions[50][0], 3 * positions[50][1]);
+    endShape();
+    
+    //tower nose shading
+    fill(208, 120, 88);
+    beginShape();
+    vertex(rightForeheadX, rightForeheadY);
+    vertex(3 * positions[40][0], 3 * positions[40][1]);
+    vertex(3 * positions[43][0], 3 * positions[43][1]);
+    vertex(3 * positions[33][0], 3 * positions[33][1]);
+    endShape();
+    
+    beginShape();
+    vertex(leftForeheadX, leftForeheadY);
+    vertex(3 * positions[34][0], 3 * positions[34][1]);
+    vertex(3 * positions[42][0], 3 * positions[42][1]);
+    vertex(3 * positions[33][0], 3 * positions[33][1]);    
+    endShape();
+    
+    fill(231, 149, 112);
+    beginShape();
+    vertex(3 * positions[43][0], 3 * positions[43][1]);  
+    vertex(3 * positions[38][0], 3 * positions[38][1]);  
+    vertex(3 * positions[39][0], 3 * positions[39][1]);  
+    vertex(3 * positions[40][0], 3 * positions[40][1]);  
+    endShape();
+    
+    beginShape();
+    vertex(3 * positions[42][0], 3 * positions[42][1]);  
+    vertex(3 * positions[36][0], 3 * positions[36][1]);  
+    vertex(3 * positions[35][0], 3 * positions[35][1]);  
+    vertex(3 * positions[34][0], 3 * positions[34][1]);  
+    endShape();
+    
+    fill(253, 195, 194);
+    beginShape();
+    vertex(3 * positions[43][0], 3 * positions[43][1]);  
+    vertex(3 * positions[62][0], 3 * positions[62][1]);  
+    vertex(3 * positions[42][0], 3 * positions[42][1]);  
+    vertex(3 * positions[37][0], 3 * positions[37][1]);  
+    endShape();
+    
+    //nose bridge
+    fill(222, 157, 134);
+    beginShape();
+    vertex(3 * positions[42][0], 3 * positions[42][1]);  
+    vertex(3 * positions[62][0], 3 * positions[62][1]);  
+    vertex(3 * positions[43][0], 3 * positions[43][1]);  
+    vertex(3 * positions[33][0], 3 * positions[33][1]);  
+    endShape();
+    
+    //more nose crap
+    fill(51, 29, 21);
+    beginShape();
+    vertex(3 * positions[37][0], 3 * positions[37][1]);  
+    vertex(3 * positions[43][0], 3 * positions[43][1]);  
+    vertex(3 * positions[38][0], 3 * positions[38][1]); 
+    endShape();
+    
+    beginShape();
+    vertex(3 * positions[36][0], 3 * positions[36][1]);  
+    vertex(3 * positions[37][0], 3 * positions[37][1]);  
+    vertex(3 * positions[42][0], 3 * positions[42][1]); 
+    endShape();
+    
+    //center forehead
+    fill(199, 140, 114);
+    beginShape();
+    vertex(3 * positions[21][0], 3 * positions[21][1]);  
+    vertex(3 * positions[17][0], 3 * positions[17][1]); 
+    vertex(3 * positions[18][0], 3 * positions[18][1]); 
+    vertex(rightForeheadX, rightForeheadY);
+    vertex(3 * positions[33][0], 3 * positions[33][1]);
+    vertex(leftForeheadX, leftForeheadY)
+    vertex(3 * positions[22][0], 3 * positions[22][1]);  
+    endShape();   
+    
+    //WEED EYES
+    fill(253, 149, 126);
+    beginShape();
+    vertex(3 * positions[23][0], 3 * positions[23][1]); 
+    vertex(3 * positions[63][0], 3 * positions[63][1]); 
+    vertex(3 * positions[24][0], 3 * positions[24][1]); 
+    vertex(3 * positions[64][0], 3 * positions[64][1]); 
+    vertex(3 * positions[25][0], 3 * positions[25][1]); 
+    vertex(3 * positions[65][0], 3 * positions[65][1]); 
+    vertex(3 * positions[26][0], 3 * positions[26][1]); 
+    vertex(3 * positions[66][0], 3 * positions[66][1]); 
+    endShape();
+    
+    beginShape();
+    vertex(3 * positions[30][0], 3 * positions[30][1]); 
+    vertex(3 * positions[68][0], 3 * positions[68][1]); 
+    vertex(3 * positions[29][0], 3 * positions[29][1]); 
+    vertex(3 * positions[67][0], 3 * positions[67][1]); 
+    vertex(3 * positions[28][0], 3 * positions[28][1]); 
+    vertex(3 * positions[70][0], 3 * positions[70][1]); 
+    vertex(3 * positions[31][0], 3 * positions[31][1]); 
+    vertex(3 * positions[69][0], 3 * positions[69][1]); 
+    endShape();
+    
+    
+    
+    
+    fill(0);
+    var eyeDiameter = 3 * (positions[70][0] - positions[69][0]) * 0.7;
+    arc(3 * positions[32][0], 3 * positions[32][1], eyeDiameter,eyeDiameter, 0, Math.PI, OPEN);
+    arc(3 * positions[27][0], 3 * positions[27][1], eyeDiameter,eyeDiameter, 0, Math.PI, OPEN);
+    
+    //shadow under eyebrows
+    fill(114, 61, 27);
+    beginShape();
+    vertex(rightForeheadX, rightForeheadY)
+    vertex(3 * positions[18][0], 3 * positions[18][1]); 
+    vertex(3 * positions[17][0], 3 * positions[17][1]); 
+    vertex(3 * positions[16][0], 3 * positions[16][1]); 
+    endShape();
+    
+    beginShape();
+    vertex(leftForeheadX, leftForeheadY)
+    vertex(3 * positions[22][0], 3 * positions[22][1]); 
+    vertex(3 * positions[21][0], 3 * positions[21][1]); 
+    vertex(3 * positions[20][0], 3 * positions[20][1]); 
+    endShape();
+    
+    //shadow above eyes
+    fill(128, 98, 87);
+    beginShape();
+    vertex(rightForeheadX1, rightForeheadY1);
+    vertex(3 * positions[15][0], 3 * positions[15][1]); 
+    vertex(3 * positions[16][0], 3 * positions[16][1]); 
+    vertex(rightForeheadX, rightForeheadY);
+    vertex(3 * positions[30][0], 3 * positions[30][1]); 
+    vertex(3 * positions[68][0], 3 * positions[68][1]); 
+    vertex(3 * positions[29][0], 3 * positions[29][1]); 
+    vertex(3 * positions[67][0], 3 * positions[67][1]); 
+    vertex(3 * positions[28][0], 3 * positions[28][1]); 
+    endShape();
+    
+     beginShape();
+    vertex(leftForeheadX1, leftForeheadY1);
+    vertex(3 * positions[19][0], 3 * positions[19][1]); 
+    vertex(3 * positions[20][0], 3 * positions[20][1]); 
+    vertex(leftForeheadX, leftForeheadY);
+    vertex(3 * positions[25][0], 3 * positions[25][1]); 
+    vertex(3 * positions[64][0], 3 * positions[64][1]); 
+    vertex(3 * positions[24][0], 3 * positions[24][1]); 
+    vertex(3 * positions[63][0], 3 * positions[63][1]); 
+    vertex(3 * positions[23][0], 3 * positions[23][1]); 
+    endShape();
+
+    //eye lids
+    fill(180, 129, 118);
+    beginShape();
+    vertex(3 * positions[23][0], 3 * positions[23][1]); 
+    vertex(3 * positions[63][0], 3 * positions[63][1]); 
+    vertex(3 * positions[24][0], 3 * positions[24][1]); 
+    vertex(3 * positions[64][0], 3 * positions[64][1]); 
+    vertex(3 * positions[25][0], 3 * positions[25][1]); 
+    vertex(3 * positions[27][0], 3 * positions[27][1]); 
+    endShape();
+        
+    beginShape();
+    vertex(3 * positions[30][0], 3 * positions[30][1]); 
+    vertex(3 * positions[68][0], 3 * positions[68][1]); 
+    vertex(3 * positions[29][0], 3 * positions[29][1]); 
+    vertex(3 * positions[67][0], 3 * positions[67][1]); 
+    vertex(3 * positions[28][0], 3 * positions[28][1]); 
+    vertex(3 * positions[32][0], 3 * positions[32][1]); 
+    endShape();
+    
+    //lips
+    fill(0);
+    beginShape();
+    vertex(3 * positions[44][0], 3 * positions[44][1]); 
+    vertex(3 * positions[45][0], 3 * positions[45][1]); 
+    vertex(3 * positions[46][0], 3 * positions[46][1]); 
+    vertex(3 * positions[47][0], 3 * positions[47][1]); 
+    vertex(3 * positions[48][0], 3 * positions[48][1]); 
+    vertex(3 * positions[49][0], 3 * positions[49][1]); 
+    vertex(3 * positions[50][0], 3 * positions[50][1]); 
+    vertex(3 * positions[51][0], 3 * positions[51][1]); 
+    vertex(3 * positions[52][0], 3 * positions[52][1]); 
+    vertex(3 * positions[53][0], 3 * positions[53][1]); 
+    vertex(3 * positions[54][0], 3 * positions[54][1]); 
+    vertex(3 * positions[55][0], 3 * positions[55][1]);
+    endShape();
+    
+    fill(148, 98, 98);
+    
+    beginShape();
+    vertex(3 * positions[44][0], 3 * positions[44][1]); 
+    vertex(3 * positions[45][0], 3 * positions[45][1]); 
+    vertex(3 * positions[46][0], 3 * positions[46][1]); 
+    vertex(3 * positions[47][0], 3 * positions[47][1]); 
+    vertex(3 * positions[48][0], 3 * positions[48][1]); 
+    vertex(3 * positions[49][0], 3 * positions[49][1]); 
+    vertex(3 * positions[50][0], 3 * positions[50][1]); 
+    vertex(3 * positions[59][0], 3 * positions[59][1]); 
+    vertex(3 * positions[60][0], 3 * positions[60][1]); 
+    vertex(3 * positions[61][0], 3 * positions[61][1]); 
+    endShape();
+    
+    beginShape();
+    vertex(3 * positions[50][0], 3 * positions[50][1]); 
+    vertex(3 * positions[51][0], 3 * positions[51][1]); 
+    vertex(3 * positions[52][0], 3 * positions[52][1]); 
+    vertex(3 * positions[53][0], 3 * positions[53][1]); 
+    vertex(3 * positions[54][0], 3 * positions[54][1]); 
+    vertex(3 * positions[55][0], 3 * positions[55][1]);
+    vertex(3 * positions[44][0], 3 * positions[44][1]);
+    vertex(3 * positions[56][0], 3 * positions[56][1]);
+    vertex(3 * positions[57][0], 3 * positions[57][1]);
+    vertex(3 * positions[58][0], 3 * positions[58][1]);
+    endShape();
+    
+ 
+  }
+}
+              </pre>
+            </div>
+              </div>
+
+              <div class = "col-md-12 info-box">
+                <h2 id="sound">Sound Face</h2>
+
+                <div style="height:250px;border:1px solid #ccc;overflow:auto;" class = "col-md-7 code-info">
+                  <pre>
+var input;
+var analyzer;
+var volume = 0;
+var stageCount = 1;
+var stage = 0;
+
+function setup() {
+  createCanvas(600, 600);
+
+  // Create an Audio input
+  mic = new p5.AudioIn();
+
+  // start the Audio Input.
+  // By default, it does not .connect() (to the computer speakers)
+  mic.start();
+}
+
+function draw() {
+  background(76,193,166);
+
+  // Get the overall volume (between 0 and 1.0)
+  var v = mic.getLevel();
+  // "Smooth" the volume variable with an easing function
+  volume += (v-volume)/3;
+  
+ var volumeStage = map(volume, 0,1,0,100);
+    console.log("Voume stage " + stage + " stageCount " + stageCount);
+    if (volumeStage > 5) {
+    volumeStage = 0;
+     stageCount += 1  
+    }
+    eye = new eyeBrows();
+    
+    if (stageCount % 25 == 0) {
+        stageCount = 1;
+        stage += 1   
+    }
+       
+    fill((255 / 10 * stage), (255 / 10 * stage), (255 / 10 * stage));
+    if (stage <= 1) {
+        background(76,193,166);
+        noStroke();
+        //Face
+        fill(231,207,137);
+        rect(150,150,300,300);
+        arc(300,155,316,70,Math.PI, 0);
+        arc(150,300,70,300, Math.PI / 2, Math.PI / 2 + Math.PI);
+        arc(300,445,316,70,0, Math.PI);
+        arc(450,300,70,300, Math.PI + Math.PI / 2, Math.PI / 2 );
+        //Mouth and Eyes
+        fill(241,6,73);
+        ellipse(200,250,25,50);
+        ellipse(400,250,25,50);
+        ellipse(300,380,130,70);    
+        fill(231,207,137);
+        ellipse(300, 370, 120, 70);
+        
+    }
+    else if (stage == 2) {
+        background(76,193,166);
+        noStroke();
+        //Face
+        fill(231,207,137);
+        rect(150,150,300,300);
+        arc(300,155,316,70,Math.PI, 0);
+        arc(150,300,70,300, Math.PI / 2, Math.PI / 2 + Math.PI);
+        arc(300,445,316,70,0, Math.PI);
+        arc(450,300,70,300, Math.PI + Math.PI / 2, Math.PI / 2 );
+        //Mouth and Eyes
+        fill(241,6,73);
+        ellipse(200,250,45,50);
+        ellipse(400,250,45,50);
+        ellipse(300,380,130,70);
+        fill(231,207,137);
+        ellipse(300, 370, 120, 70);
+        ellipse(200,258,45,50);
+        ellipse(400,258,45,50);
+
+        fill(250,197,57);
+        ellipse(160, 320, 60, 60);
+        ellipse(440, 320, 60, 60);
+    }
+    else if (stage == 3) {
+        background(250,197,57);
+        noStroke();
+        //Face
+        fill(231,207,137);
+        rect(150,150,300,300);
+        arc(300,155,316,70,Math.PI, 0);
+        arc(150,300,70,300, Math.PI / 2, Math.PI / 2 + Math.PI);
+        arc(300,445,316,70,0, Math.PI);
+        arc(450,300,70,300, Math.PI + Math.PI / 2, Math.PI / 2 );
+        //Eyes
+        fill(241,6,73);
+        ellipse(200,250,39,50);
+        ellipse(400,250,39,50);
+        //Mouth
+        rect(260, 400, 80, 12);
+        //cheeks
+        ellipse(180, 400, 150,150);
+        ellipse(420, 400, 150,150);
+        fill(231,207,137);
+        ellipse(177, 394, 145,140);
+        ellipse(423, 394, 145,140);
+        //blush
+        fill(76,193,166);
+        rect(140, 300, 60, 20, 20);
+        rect(400, 300, 60, 20, 20);
+
+    }
+    else if (stage == 4) {
+        background(246,104,42);
+         noStroke();
+        //Face
+        fill(231,207,137);
+        rect(150,150,300,300);
+        arc(300,155,316,70,Math.PI, 0);
+        arc(150,300,70,300, Math.PI / 2, Math.PI / 2 + Math.PI);
+        arc(300,445,316,70,0, Math.PI);
+        arc(450,300,70,300, Math.PI + Math.PI / 2, Math.PI / 2 );
+        //Eyes
+        fill(241,6,73);
+        rect(165,220,90,60, 20);
+        rect(345,220,90,60, 20);
+        fill(231,207,137);
+        rect(155,215,90,60, 20);
+        rect(355,215,90,60, 20);
+        
+        //Mouth
+        fill(241,6,73);
+        ellipse(300, 410, 80, 75);
+        fill(231,207,137);
+        ellipse(300, 420, 80, 75);
+
+        //cheeks
+        fill(241,6,73);
+        ellipse(180, 400, 150,150);
+        ellipse(420, 400, 150,150);
+        fill(231,207,137);
+        ellipse(177, 394, 145,140);
+        ellipse(423, 394, 145,140);
+        //blush
+        fill(76,193,166);
+        rect(140, 300, 60, 20, 20);
+        rect(400, 300, 60, 20, 20);
+    }
+    else if (stage == 5) {
+        background(246,104,42);
+         noStroke();
+        //Face
+        fill(231,207,137);
+        rect(150,150,300,300);
+        arc(300,155,316,70,Math.PI, 0);
+        arc(150,300,70,300, Math.PI / 2, Math.PI / 2 + Math.PI);
+        arc(300,445,316,70,0, Math.PI);
+        arc(450,300,70,300, Math.PI + Math.PI / 2, Math.PI / 2 );
+        //Eyes
+        fill(241,6,73);
+        ellipse(200,250,70,70);
+        ellipse(400,250,70,70);
+
+        
+        //Mouth
+        fill(241,6,73);
+        ellipse(300, 410, 80, 75);
+        fill(231,207,137);
+        ellipse(300, 420, 80, 75);
+
+        //cheeks
+        fill(241,6,73);
+        ellipse(180, 400, 170,170);
+        ellipse(420, 400, 170,170);
+        fill(231,207,137);
+        ellipse(177, 394, 165,160);
+        ellipse(423, 394, 165,160);
+        //blush
+        fill(76,193,166);
+        rect(140, 300, 60, 20, 20);
+        rect(400, 300, 60, 20, 20); 
+    }
+    else if (stage == 6) {
+        background(241,6,73);
+        noStroke();
+        //Face
+        fill(231,207,137);
+        rect(150,150,300,300);
+        arc(300,155,316,70,Math.PI, 0);
+        arc(150,300,70,300, Math.PI / 2, Math.PI / 2 + Math.PI);
+        arc(300,445,316,70,0, Math.PI);
+        arc(450,300,70,300, Math.PI + Math.PI / 2, Math.PI / 2 );
+        //Eyes
+        fill(241,6,73);
+        triangle(260, 290, 150, 240, 150, 340);
+        triangle(340, 290, 450, 240, 450, 340);
+        fill(231,207,137);
+        triangle(240, 290, 130, 240, 130, 340);
+        triangle(360, 290, 470, 240, 470, 340);
+        
+        //Mouth
+        fill(241,6,73);
+        rect(130, 370, 340, 90, 50);
+        
+        //barf
+        fill(250,197,57);
+        rect(140, 390, 320, 300, 20);
+        fill(246,104,42);
+        ellipse(240, 450, 80, 60);
+        ellipse(300, 600, 60, 60);
+        ellipse(400, 490, 60, 60);
+        ellipse(190, 540, 55, 50);
+        fill(231,207,137);
+        ellipse(235, 445, 80, 60);
+        ellipse(295, 595, 60, 60);
+        ellipse(395, 485, 60, 60);
+        ellipse(185, 535, 55, 50);
+
+    }
+//    else  if (stage == 7) {
+//        fill(0,255,0);
+//        ellipse(200,200,100,200);  
+//    }
+//     else if (stage == 8) {
+//        fill(0,255,0);
+//        ellipse(200,200,100,200);  
+//    }
+//    else  if (stage == 9) {
+//        fill(0,255,0);
+//        ellipse(200,200,100,200);  
+//    }
+    else if (stage == 7) {
+//        fill(0,255,0);
+//        ellipse(200,200,100,200); 
+     stage = 0;   
+    }
+//    rect(300,300,50,50);
+//    line(400 + stage, 100 - 2 * stage, 450 - stage, 110 + 2 * stage); 
+    
+}
+
+function eyeBrows() {
+
+    this.rotate = function() {
+        
+    }
+};
+                </pre>
+              </div>
+                <img class = "img-responsive col-md-5" src="p5_assets/interactive_face_preview.png" alt="" />
+              </div>  
+              <hr>
+
+            <div class = "col-md-12 info-box">
+              <h2 id="screen">Screen Saver</h2>
+                <img class = "img-responsive col-md-5" src="p5_assets/screenSaver_preview.png" alt="" />
+                  <div style="height:250px;border:1px solid #ccc;overflow:auto;" class = "col-md-7 code-info">
+                    <pre>
+var myDiameter = 100;
+var posX = 0;
+var posY = 0;
+var angle = 0;
+var lines = []
+
+function setup() 
+{
+  background(0);
+  createCanvas(windowWidth, windowHeight); 
+  noStroke();  
+  bug = new Jitter(1);
+}
+function draw() 
+{ 
+  
+ background(100, 100, 255, 1);
+  i = random(10);
+  x1 = random(windowWidth);
+  x2 = random(windowWidth);
+  sumX = abs(x2 - x1);
+  y1 = random(windowHeight);
+  y2 = random(windowHeight);
+  sumY = abs(y2 - y1);
+  if (i > 2) {
+    lines.push(new Jitter(i % 2, sumX, sumY))
+    print(i % 2)
+  }
+  for (var i=0; i<lines.length; i++) {
+    lines[i].move();
+    lines[i].display();
+    if (lines[i].x > windowWidth + 100 || lines[i].y > windowHeight + 100) {
+      lines.splice(i, 1);
+    }
+  }
+}
+
+
+// Jitter class
+function Jitter(det, x, y) {
+  this.x = x;
+  this.y = y;
+  this.diameter = random(10, 30);
+  this.speed = 1;
+  
+  if (det < 1) {
+  this.move = function() {
+    this.x += 1
+  };
+  }
+  else {
+    this.move = function() {
+      this.y += 1
+    }
+  }
+
+  this.display = function() {
+    rect(this.x, this.y, 10, 10)
+  }
+};
+                    </pre>
+                  </div>
+              </div>
+              
+              <hr>
+
+              <div class = "col-md-12 info-box">
+              	<h2 id="tank">Tank Animation</h2>
+                  <div style="height:250px;border:1px solid #ccc;overflow:auto;" class = "col-md-7 code-info">
+                    <pre>
+//setup is executed once at the launch
+
+var angle = 0
+var pos = 0
+var count = 0
+var dropHeight = 0
+var flag = false
+
+function setup() {
+  createCanvas(800, 800);  // Size must be the first statement
+  stroke(255,255,255);     // Set line drawing color to white
+  // strokeWeight(4);
+  frameRate(60);
+}
+// The statements in draw() are executed until the 
+// program is stopped. Each statement is executed in 
+// sequence and after the last line is read, the first 
+// line is executed again.
+function draw() { 
+  background(0);   // Set the background to black
+  line(0,600, 800, 600)
+
+  if (pos > 900) {
+    pos = 0
+    flag = true
+  }
+  else {
+    flag = false
+  }
+  pos = pos + 3
+
+  if (flag) {
+    dropHeight = 0
+  }
+  dropHeight += 16
+  rect(0,dropHeight, 20, 40)
+  rect(120,dropHeight - 600, 20, 40)
+  rect(240,dropHeight - 1200, 20, 40)
+  rect(360,dropHeight - 1800, 20, 40)
+  rect(480,dropHeight - 2400, 20, 40)
+  rect(600,dropHeight - 3000, 20, 40)
+  rect(720,dropHeight - 3600, 20, 40)
+
+
+  rect(pos - 20, 600 - 50, 60, 50)
+  rect(pos - 30, 600 - 30, 80, 30)
+  rect(pos, 600 - 35, 80, 10)
+  // ellipse(pos + 30, 600 - 30, 60, 60)
+} 
+
+function setUpFallingRects(pos, height) {
+  rect(pos, height, 20, 40)
+}
+                    </pre>
+                  </div>
+                <img class = "img-responsive col-md-5" src="p5_assets/tank_preview.png" alt="" />
+              </div>
+
+              <hr>
+      		</div> 
+  	</div>
+</div>
+
+
+
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
+	</body>
+</html>
