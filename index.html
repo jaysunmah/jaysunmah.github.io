@@ -7,7 +7,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="http://getbootstrap.com/favicon.ico">
+		<link rel="icon" href="assets/images/web_logo.png">
 
 		<title>Jason.Ma</title>
 
@@ -31,10 +31,13 @@
 		<![endif]-->
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link href="assets/css/hover-min.css" rel="stylesheet" media="all">
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+		<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- <link href="assets/css/animate.css" rel="stylesheet" /> -->
 
 	</head>
-
 	<body>
+
 
 		<!-- Fixed navbar -->
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -52,54 +55,115 @@
 					<ul class="nav navbar-nav">
 						<li><a href="#about">Resume and Contact</a></li>
 						<li><a href="#skills">Projects</a></li>
-						<li><a href="#sail">Art Gallery</a></li>
-						<li><a href="#face">Facial Recognition</a></li>
-						<li><a href="#sound">Sound Face</a></li>
+						<li><a href="#art">Art Gallery</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
 		</nav>
 
-		<div class="content">
-
 			<!-- Main component for a primary marketing message or call to action -->
 			<div class="p5parent">
 				<div id = "p5Canvas"></div>
 			</div>
-			<div class = "flocking-cited">
-				<a href = "index.html" class="flocking-caption">"Flocking Quads"</a>
+			<div class = "col-md-12 flocking-cited">
+				<a href = "sub-links/p5/p5.html" class="flocking-caption">"Flocking Quads"</a>
 			</div>
+		<div class="content">
 
 
 			<div class="section col-md-12", id="about">
 				
 				<h1>Resume and Contact</h1>
+				<br>
 
 				<div class="col-md-4 about-box">
 					<img src="assets/images/arduino.png" class="img-responsive img-circle centered"/>
 					<h3 style ="text-align:center">About Me</h3>
+					<br>
 					<h4>Hobbies</h4>
 					<p>Swimming, ultimate frisbee, and coding. Always eager to learn more and try new things. </p>
 					<h4>Interests</h4>
 					<p>Currently exploring emerging media arts, robotics, and other mediums of technology.</p>
+					<h4>Programming</h4>
+					<p>Proficient: Python, HTML, CSS</p>
+					<p>Prior experience but rusty: Java, Javascript</p>
 				</div>
 
 				<div class="col-md-4 about-box">
 					<img src="assets/images/hobby_logo1.png" class="img-responsive img-circle centered"/>
 					<h3 style="text-align:center">Resume and Contact</h3>
-					<h4>Hobbies</h4>
-					<p>Swimming, ultimate frisbee, and coding. Always eager to learn more and try new things. </p>
-					<h4>Interests</h4>
-					<p>Currently exploring emerging media arts, robotics, and other mediums of technology.</p>
+					<br>
+					<h4>Resume</h4>
+					<a href="assets/files/jasonresume.pdf">click here to view</a>
+					<address>
+				  		<h4>Email</h4>
+				 		<a href="mailto:jasonm2@andrew.cmu.edu">jasonm2@andrew.cmu.edu</a>
+					</address>	
+
+					<address>
+				  		<h4>Mailing Address</h4>
+				  		<p>5032 Forbes Avenue SMC 5657, Pittsburgh PA, 15289</p>
+				  		<abbr title="Phone">P:</abbr> (732) 693-6694
+					</address>
+
+					<address>
+						<h4>I'm on social networks!</h4>
+						<ul class="company-social">
+
+							<a href="https://www.facebook.com/jaysunmah">
+								<li class="social-icon fb-icon",id="square">
+									<div class="icon-container">
+										<i class="fa fa-facebook vert-align"></i>
+									</div>
+								</li>
+							</a>
+
+							<a href="https://www.facebook.com/jaysunmah">
+								<li class="social-icon github-icon",id="square">
+									<div class="icon-container">
+										<i class="fa fa-github vert-align"></i>
+									</div>
+								</li>
+							</a>
+
+							<a href="https://www.facebook.com/jaysunmah">
+								<li class="social-icon linkedin-icon",id="square">
+									<div class="icon-container">
+										<i class="fa fa-linkedin vert-align"></i>
+									</div>
+								</li>
+							</a>
+
+							<a href="https://www.facebook.com/jaysunmah">
+								<li class="social-icon google-plus-icon",id="square">
+									<div class="icon-container">
+										<i class="fa fa-google-plus vert-align"></i>
+									</div>
+								</li>
+							</a>
+
+							<a href="https://www.facebook.com/jaysunmah">
+								<li class="social-icon twitter-icon",id="square">
+									<div class="icon-container">
+										<i class="fa fa-twitter vert-align"></i>
+									</div>
+								</li>
+							</a>
+
+
+						</ul>	
+					</address>
 				</div>
 				
 				<div class="col-md-4 about-box">
 					<img src="assets/images/cmu_logo.png" class="img-responsive img-circle centered"/>
 					<h3 style ="text-align:center">Undergraduate</h3>
-					<h4>Carnegie Mellon University Bachelor of Computer Science and Arts, expected Class of '19</h4>
+					<br>
+					<h4>Carnegie Mellon University</h4>
+					<p> Bachelor of Computer Science and Arts, expected Class of '19</p>
 					<h4>GPA:3.8</h4>
 					<h4>Relevant Coursework:</h4>
-						<div style="height:250px;width:100%;overflow:auto">
+						<div style="height:200px;width:100%;overflow:auto">
 						<h4>Spring 2016</h4>
 						<ul>
 							<li>Principles of Computer Science </li>
@@ -108,7 +172,6 @@
 							<li>Concept Studio: Self and Human Being</li>
 							<li>Electronic Media Studio II: Intro to Interactivity</li>
 						</ul>
-
 						<h4>Fall 2015</h4>
 						<ul>
 							<li>Principles of Computer Science </li>
@@ -116,6 +179,14 @@
 							<li>Global History</li>
 							<li>Concept Studio: Self and Human Being</li>
 							<li>Electronic Media Studio II: Intro to Interactivity</li>
+						</ul>
+						<h4>High School</h4>
+						<ul>
+							<li>Multivariable Calculus</li>
+							<li>AP Calculus BC</li>
+							<li>AP Computer Science</li>
+							<li>AP Chemistry</li>
+							<li>AP Biology</li>
 						</ul>
 					</div>
 				</div>
@@ -125,7 +196,7 @@
 			<div class="section col-md-12 bg-gray", id="skills">
 				<h1>Projects</h1>
 
-				<a href = "program_info/p5.html"/>
+				<a href = "sub-links/p5/p5.html"/>
 					<div class="col-md-3 hvr-fade project-box-gray">
 						<img class = "img-icon" src="assets/images/p5face_preview	.png" alt=""/>
 						<h4>p5.js</h4>
@@ -134,7 +205,7 @@
 					</div>
 				</a>
 
-				<a href = "program_info/p5.html"/>
+				<a href = "sub-links/phototalk/phototalk.html"/>
 					<div class="col-md-3 hvr-fade project-box-gray">
 						<img class = "img-icon" src="assets/images/phototalk_preview.png" alt="" />
 						<h4>phototalk</h4>
@@ -143,7 +214,7 @@
 					</div>
 				</a>
 
-				<a href = "program_info/p5.html"/>
+				<a href = "sub-links/pycopter/pycopter.html"/>
 					<div class="col-md-3 hvr-fade project-box-gray">
 						<img class = "img-icon" src="assets/images/pycopter_preview.png" alt="" />
 						<h4>pycopter</h4>
@@ -154,8 +225,8 @@
 
 				<a href = "program_info/p5.html"/>
 					<div class="col-md-3 hvr-fade project-box-gray">
-						<img class = "img-icon" src="assets/images/pycopter_preview.png" alt="" />
-						<h4>pycopter</h4>
+						<img class = "img-icon" src="assets/images/graphic_media1_preview.png" alt="" />
+						<h4>phoebe</h4>
 						<p>Messing around with user interaction and web based 	animations. Implementing the p5.js libraries.
 						</p>
 					</div>
@@ -170,8 +241,8 @@
 
 				<a href = "program_info/p5.html"/>
 					<div class="col-md-3 hvr-fade project-box">
-						<img class = "img-icon" src="assets/images/p5face_preview	.png" alt=""/>
-						<h4>p5.js</h4>
+						<img class = "img-icon" src="assets/images/sketches_preview.png" alt=""/>
+						<h4>sketches</h4>
 						<p>Messing around with user interaction and web based 	animations. Implementing the p5.js libraries.
 						</p>
 					</div>
@@ -179,8 +250,8 @@
 
 				<a href = "program_info/p5.html"/>
 					<div class="col-md-3 hvr-fade project-box">
-						<img class = "img-icon" src="assets/images/phototalk_preview.png" alt="" />
-						<h4>phototalk</h4>
+						<img class = "img-icon" src="assets/images/paintings_preview.png" alt="" />
+						<h4>paintings</h4>
 						<p>Messing around with user interaction and web based 	animations. Implementing the p5.js libraries.
 						</p>
 					</div>
@@ -188,8 +259,8 @@
 
 				<a href = "program_info/p5.html"/>
 					<div class="col-md-3 hvr-fade project-box">
-						<img class = "img-icon" src="assets/images/pycopter_preview.png" alt="" />
-						<h4>pycopter</h4>
+						<img class = "img-icon" src="assets/images/3d_media_preview.png" alt="" />
+						<h4>3d media</h4>
 						<p>Messing around with user interaction and web based 	animations. Implementing the p5.js libraries.
 						</p>
 					</div>
@@ -197,8 +268,8 @@
 
 				<a href = "program_info/p5.html"/>
 					<div class="col-md-3 hvr-fade project-box">
-						<img class = "img-icon" src="assets/images/pycopter_preview.png" alt="" />
-						<h4>pycopter</h4>
+						<img class = "img-icon" src="assets/images/mixed_media_preview.png" alt="" />
+						<h4>mixed media</h4>
 						<p>Messing around with user interaction and web based 	animations. Implementing the p5.js libraries.
 						</p>
 					</div>
@@ -208,7 +279,15 @@
 
 
 
+
+
+
+		<div class=" col-md-12 footer"> Jason Ma 2016
+		</div>
+
 		</div> <!-- /container -->
+
+
 
 
 		<!-- Bootstrap core JavaScript
@@ -219,12 +298,22 @@
 		<script src="./index_files/bootstrap.min.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<script src="./index_files/ie10-viewport-bug-workaround.js"></script>
+		<script language="javascript" type="text/javascript" src="assets/js/script.js"></script>
+
 	
+
 
 		<script language="javascript" type="text/javascript" src="assets/landing_screen/js/p5.js"></script>
 		<script type="text/javascript" src="assets/landing_screen/js/dat.gui.min.js"></script>
 		<script language="javascript" type="text/javascript" src="assets/landing_screen/sketch.js"></script>
-	 <script type='text/javascript' src='assets/landing_screen/addons/p5.dom.js'>
+		<script type='text/javascript' src='assets/landing_screen/addons/p5.dom.js'></script>	
+
+	 
+
+
+
+
+
 
 
 </body></html>

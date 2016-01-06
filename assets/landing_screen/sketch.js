@@ -23,7 +23,7 @@ var text;
 
 function setup() {
   // createCanvas(windowWidth, windowHeight);
-  var myCanvas = createCanvas(windowWidth, 0.95 * windowHeight); 
+  var myCanvas = createCanvas(0.96 * windowWidth, 0.95 * windowHeight); 
   myCanvas.parent('p5Canvas');
 
   flock = new Flock();
