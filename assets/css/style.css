@@ -160,4 +160,13 @@ h4 {
 	background-color:#dd4b39;
 }
 
+.archived-projects {
+	font-size: 20px;
+	padding-left: 30px;
+}
+
+.archived-projects a:hover {
+	text-decoration: none;
+
+}
 
