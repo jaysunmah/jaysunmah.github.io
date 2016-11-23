@@ -8,6 +8,10 @@ a {
 	color: grey;
 }
 
+.ui.icon.button, .ui.icon.buttons .button {
+  padding: 6px;
+}
+
 i.large.icons {
 	font-size: 2em;
 }
