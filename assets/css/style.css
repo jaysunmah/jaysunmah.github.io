@@ -1,3 +1,15 @@
+h1, h2, h3, p {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+h1 {
+  font-size: 4em;
+}
+
 body {
   background-image: url('../../assets/images/gray_tiles.png');
 }
@@ -5,7 +17,10 @@ body {
 	font-size: 3em;
 }
 a {
-	color: grey;
+	color: #aaa;
+}
+a:hover {
+  color:black;
 }
 
 .ui.icon.button, .ui.icon.buttons .button {
@@ -14,6 +29,11 @@ a {
 
 i.large.icons {
 	font-size: 2em;
+}
+
+.landingContainer {
+  width: 80%;
+  margin: auto;
 }
 .parent {
   position: relative;
@@ -26,4 +46,18 @@ i.large.icons {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.vertCenteredParent {
+  display: inline-block;
+}
+
+.vertCentered {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.faceIcon {
+  margin: auto;
 }
