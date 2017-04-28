@@ -1,4 +1,4 @@
-h1, h2, h3, p {
+h1, h2, h3, p, a{
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
@@ -17,6 +17,7 @@ body {
 	font-size: 3em;
 }
 a {
+  font-size: 1em;
 	color: #aaa;
 }
 a:hover {
