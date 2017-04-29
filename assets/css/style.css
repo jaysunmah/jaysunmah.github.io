@@ -37,7 +37,8 @@ i.large.icons {
 }
 
 .ui.portfolio.grid .column {
-  padding: 0;
+  padding: 0 !important;
+  cursor: pointer;
 }
 
 .hidden.content .backdrop {
