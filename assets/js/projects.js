@@ -11,6 +11,9 @@ function menuHandler(item) {
 }
 
 $(document).ready(function() {
+  var imHeight = $('#refIm').height();
+  // $('.ui.portfolio.grid .column').css('height', imHeight);
+  $('.ui.portfolio.grid .column .ui.fade.reveal').css('height', imHeight);
   $('.ui.menu')
     .on('click', '.item', function() {
       var item = (this.id);
@@ -22,4 +25,9 @@ $(document).ready(function() {
           .removeClass('active');
       }
     });
+});
+
+$( window ).resize(function() {
+  var imHeight = $('#refIm').height();
+  $('.ui.portfolio.grid .column .ui.fade.reveal').css('height', imHeight);
 });
