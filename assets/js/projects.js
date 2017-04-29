@@ -63,6 +63,12 @@ function renderProjects() {
         date: "August 2016",
         description: "Automated scripts to log in and claim bing rewards"
       },
+      {
+        title: "Bing Rewards Bot",
+        imSource: "../assets/images/project_icons/bingbots.png",
+        date: "August 2016",
+        description: "Automated scripts to log in and claim bing rewards"
+      },
     ]
   };
   var html    = template(context);
@@ -73,19 +79,25 @@ $(document).ready(function() {
   renderProjects();
   window.setTimeout(function () {
     var imHeight = $('#refIm').height();
-    document.getElementById("refCol").style.height = imHeight + "px";
+
+    var myCols = $('.four.wide.column');
+
+    for (var i = 0; i < myCols.length; i++) {
+        myCols[i].style.height = imHeight + "px";
+    }
+    // document.getElementById("refCol").style.height = imHeight + "px";
   }, 5);
-  // $('.ui.menu')
-  //   .on('click', '.item', function() {
-  //     var item = (this.id);
-  //     menuHandler(item);
-  //     if(!$(this).hasClass('dropdown')) {
-  //       $(this)
-  //         .addClass('active')
-  //         .siblings('.item')
-  //         .removeClass('active');
-  //     }
-  //   });
+  $('.ui.menu')
+    .on('click', '.item', function() {
+      var item = (this.id);
+      menuHandler(item);
+      if(!$(this).hasClass('dropdown')) {
+        $(this)
+          .addClass('active')
+          .siblings('.item')
+          .removeClass('active');
+      }
+    });
 });
 
 $( window ).resize(function() {
