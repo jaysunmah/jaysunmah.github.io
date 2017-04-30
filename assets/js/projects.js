@@ -22,56 +22,80 @@ function renderProjects(selected) {
       imSource: "../assets/images/project_icons/sensel800x400.png",
       date: "April 2017 - May 2017",
       description: "Hand and foot classifier based on inputs from a pressure module",
-      tag: "2017"
+      tag: "2017",
+      id: "sensel"
     },
     {
       title: "Weija Messenger Bot",
       imSource: "../assets/images/project_icons/weija800x400.png" ,
       date: "March 2017 - May 2017",
       description: "Facebook messenger bot with multiple features such as bus tracking and dad jokes",
-      tag: "2017"
+      tag: "2017",
+      id: "weija"
     },
     {
       title: "Raspi Car",
       imSource: "../assets/images/project_icons/raspicar800x400.png",
       date: "March 2017 - April 2017",
       description: "Raspberry Pi controlled car. Future plans to implement self driving",
-      tag: "2017"
+      tag: "2017",
+      id: "raspi"
     },
     {
       title: "Youtube Scraper",
       imSource: "../assets/images/project_icons/youtubescraper800x400.png",
       date: "Feburary 2017 - March 2017",
       description: "Self portait machine to scrape youtube data and visualize it",
-      tag: "2017"
+      tag: "2017",
+      id: "youtube"
     },
     {
       title: "Pittsburgh Bus API",
       imSource: "../assets/images/project_icons/bustrakr800x400.png" ,
       date: "January 2017 - Feburary 2017",
       description: "Robust python addon to the Pittsburgh Port Authority bus API",
-      tag: "2017"
+      tag: "2017",
+      id: "bustrakr"
+    },
+    {
+      title: "Hololens Localization",
+      imSource: "../assets/images/project_icons/seiwebui.png" ,
+      date: "September 2016 - May 2017",
+      description: "Website and Unity application to localize and display hololens coordinates.",
+      tag: "2017",
+      id: "bustrakr"
     },
     {
       title: "Trapped Unity Game",
       imSource: "../assets/images/project_icons/room800x400.png",
       date: "November 2016 - December 2016",
       description: "Interactive multiplayer unity game where 2 players work together to escape a room",
-      tag: "2016"
+      tag: "2016",
+      id: "trapped"
     },
     {
       title: "Rude Goldberg",
       imSource: "../assets/images/project_icons/rubegoldberg.png",
       date: "October 2016 - November 2016",
       description: "Introductory Unity application with rudimentary unity physics",
-      tag: "2016"
+      tag: "2016",
+      id: "rubegoldberg"
     },
     {
       title: "Bing Rewards Bot",
       imSource: "../assets/images/project_icons/bingbots.png",
       date: "August 2016",
       description: "Automated scripts to log in and claim bing rewards",
-      tag: "2016"
+      tag: "2016",
+      id: "bingbot"
+    },
+    {
+      title: "Send that Gift",
+      imSource: "../assets/images/project_icons/sendthatgift.png",
+      date: "June 2016 - August 2016",
+      description: "User friendly gift sending website",
+      tag: "2016",
+      id: "sendthatgift"
     },
   ]
 
@@ -84,6 +108,12 @@ function renderProjects(selected) {
   };
   var html    = template(context);
   $('#projectsRow').append(html)
+
+  $('.four.wide.column').click(function() {
+    console.log(this.id);
+    window.location = "projects/template.html";
+    // window.location = this.id + ".html"
+  });
 
   var imHeight = $('#refIm').height();
   var myCols = $('.four.wide.column');
@@ -112,6 +142,7 @@ $(document).ready(function() {
           .removeClass('active');
       }
     });
+
 });
 
 $( window ).resize(function() {

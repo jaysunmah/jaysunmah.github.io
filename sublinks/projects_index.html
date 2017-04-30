@@ -18,7 +18,7 @@
     <script id="projectsContainer" type="text/x-handlebars-template">
       <div class="ui stackable porfolio grid" style="width: 100%;">
         {{#each projects}}
-          <div class="transition visible four wide {{tag}} column" id="refCol" style="padding: 0;">
+          <div class="transition visible four wide {{tag}} column" id="{{id}}" style="padding: 0;">
             <div class="ui fade reveal" style="{{../height}}">
               <div class="visible content">
                 <img class="ui image" id="refIm" src="{{imSource}}"/>
