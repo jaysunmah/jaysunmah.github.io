@@ -41,6 +41,12 @@ i.large.icons {
   cursor: pointer;
 }
 
+.four.wide.column {
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+}
+
 .hidden.content .backdrop {
   opacity: 0.3;
   position: absolute;
