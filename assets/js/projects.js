@@ -124,6 +124,11 @@ function renderProjects(selected) {
 
 $(document).ready(function() {
   renderProjects("all");
+  window.setTimeout(function() {
+    //not sure why this is necessary, lol
+    $('#projectsRow').empty();
+    renderProjects("all");
+  }, 100);
   window.setTimeout(function () {
     var imHeight = $('#refIm').height();
     var myCols = $('.four.wide.column');
