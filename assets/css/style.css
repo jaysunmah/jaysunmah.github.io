@@ -100,3 +100,7 @@ i.large.icons {
 .faceIcon {
   margin: auto;
 }
+
+.ui.hidden.divider.footer {
+  height: 50px;
+}

@@ -111,7 +111,7 @@ function renderProjects(selected) {
 
   $('.four.wide.column').click(function() {
     console.log(this.id);
-    window.location = "projects/template.html";
+    window.location = "projects/html/template.html";
     // window.location = this.id + ".html"
   });
 
