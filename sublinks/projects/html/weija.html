@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../semantic/dist/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+
+  <script type="text/javascript" src="../../../assets/js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../../../assets/js/handlebars-v4.0.5.js"></script>
+
+  <script src="../../../semantic/dist/semantic.min.js"></script>
+  <script src="../js/weija.js"></script>
+
+  <link rel="icon" href="../../../assets/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+  <body>
+    <script id="templateContainer" type="text/x-handlebars-template">
+      <h1 style="margin-top: 5px;">{{title}}</h1>
+      <p>{{date}}</p>
+      {{#each sections}}
+      <div class="ui segment" style="background: rgba(255,255,255,0.5)">
+        <div class="ui internally celled stackable grid">
+          <div class="{{isEqualWidth}} row">
+            {{#each columns}}
+              <div class="{{width}} column">
+                {{#if isImage}}
+                  <img class="ui image" src="{{content}}" />
+                {{else}}
+                  <h2>{{subheader}}</h2>
+                  <p>
+                    {{{content}}}
+                  </p>
+                {{/if}}
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </script>
+
+    <div class="ui hidden divider"></div>
+    <div class="ui container">
+      <p style="margin-bottom: 2px;">
+        <i class="ui large travel icon"></i>
+        <a href="../../projects_index.html">back to projects</a>
+      </p>
+      <div id="templateBody"></div>
+      <div class="ui hidden divider footer"></div>
+    </div>
+  </body>
+</html>

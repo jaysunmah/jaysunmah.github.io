@@ -111,8 +111,13 @@ function renderProjects(selected) {
 
   $('.four.wide.column').click(function() {
     console.log(this.id);
-    window.location = "projects/html/template.html";
-    // window.location = this.id + ".html"
+    if (this.id != "sensel" &&
+        this.id != "weija" &&
+        this.id != "raspi") {
+          window.location = "projects/html/template.html";
+        } else {
+          window.location = "projects/html/" + this.id + ".html";
+        }
   });
 
   var imHeight = $('#refIm').height();
